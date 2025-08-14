@@ -78,10 +78,10 @@ const InteractiveEmu = () => {
   }, [hasInteracted, isAnimating]);
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-1/3 z-10 flex items-center justify-center">
+    <div className="fixed left-8 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
       <div 
         ref={emuRef}
-        className="relative w-80 h-80 transition-all duration-300 hover-scale cursor-pointer"
+        className="relative w-64 h-64 transition-all duration-300 hover-scale cursor-pointer pointer-events-auto"
         onClick={() => {
           if (!isAnimating) {
             // Fun interaction - add a little bounce
