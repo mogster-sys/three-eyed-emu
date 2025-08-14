@@ -5,6 +5,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { gsap } from 'gsap';
 import { AppData } from '@/data/apps';
 import { AppCommerce } from '@/components/AppCommerce';
+import { AppStatusBadge } from '@/components/AppStatusBadge';
+import { ContactFormDialog } from '@/components/ContactFormDialog';
+import { getAppStatus } from '@/data/appStatus';
 
 interface AppCardProps {
   app: AppData;
@@ -13,9 +16,13 @@ interface AppCardProps {
 const AppCard = ({ app }: AppCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isSquareImage, setIsSquareImage] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
+  
+  const appStatus = getAppStatus(app.id);
+  const isNotReady = appStatus !== 'ready';
 
   useEffect(() => {
     const card = cardRef.current;
@@ -79,13 +86,21 @@ const AppCard = ({ app }: AppCardProps) => {
     setIsSquareImage(aspectRatio >= 0.8 && aspectRatio <= 1.2);
   };
 
+  const handleCardClick = () => {
+    if (isNotReady) {
+      setShowContactForm(true);
+    }
+  };
+
   return (
-    <div
-      ref={cardRef}
-      className="relative w-full h-64 glassmorphic rounded-xl overflow-hidden cursor-pointer glow-effect group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <>
+      <div
+        ref={cardRef}
+        className="relative w-full h-64 glassmorphic rounded-xl overflow-hidden cursor-pointer glow-effect group"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={handleCardClick}
+      >
       <div className="flex h-full">
         {/* Left side - Image and Learn More Button */}
         <div className="w-1/2 h-full relative overflow-hidden flex flex-col bg-secondary/30">
@@ -123,6 +138,7 @@ const AppCard = ({ app }: AppCardProps) => {
                   size="sm" 
                   variant="outline" 
                   className="w-full text-xs py-1.5"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   Learn More
                 </Button>
@@ -157,9 +173,12 @@ const AppCard = ({ app }: AppCardProps) => {
           <div>
             <div className="flex items-start justify-between mb-3">
               <h3 className="font-bold text-xl leading-tight pr-2">{app.name}</h3>
-              <Badge variant="secondary" className="text-xs shrink-0">
-                {app.category}
-              </Badge>
+              <div className="flex flex-col gap-1 shrink-0">
+                <Badge variant="secondary" className="text-xs">
+                  {app.category}
+                </Badge>
+                <AppStatusBadge status={appStatus} />
+              </div>
             </div>
             
             <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
@@ -169,29 +188,59 @@ const AppCard = ({ app }: AppCardProps) => {
 
           {/* Get App button */}
           <div>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button 
-                  size="sm" 
-                  className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
-                >
-                  Get App
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
-                  <DialogTitle className="text-3xl font-bold">{app.name} - Get Started</DialogTitle>
-                </DialogHeader>
-                <AppCommerce app={app} />
-              </DialogContent>
-            </Dialog>
+            {isNotReady ? (
+              <Button 
+                size="sm" 
+                variant="outline"
+                className="w-full text-xs py-1.5 opacity-60"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowContactForm(true);
+                }}
+              >
+                {appStatus === 'training' ? 'In Training' : 'Under Construction'}
+              </Button>
+            ) : (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button 
+                    size="sm" 
+                    className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Get App
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-3xl font-bold">{app.name} - Get Started</DialogTitle>
+                  </DialogHeader>
+                  <AppCommerce app={app} />
+                </DialogContent>
+              </Dialog>
+            )}
           </div>
         </div>
       </div>
 
       {/* Enhanced hover effect overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      
+      {/* Status watermark overlay */}
+      {isNotReady && (
+        <div className="absolute top-3 left-3 z-20">
+          <AppStatusBadge status={appStatus} className="backdrop-blur-sm" />
+        </div>
+      )}
     </div>
+
+    <ContactFormDialog 
+      open={showContactForm}
+      onOpenChange={setShowContactForm}
+      appName={app.name}
+      appId={app.id}
+    />
+  </>
   );
 };
 
