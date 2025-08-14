@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import emuLooksAtUser from '@/assets/EMU_looks_at_user.png';
-import emuLooksAway from '@/assets/EMU_looks_away.png';
+// Using direct image URLs since they're in the public folder
+const emuLooksAtUser = "/EMU_looks_at_user.png";
+const emuLooksAway = "/EMU_looks_away.png";
 
 const InteractiveEmu = () => {
   const emuRef = useRef<HTMLDivElement>(null);
