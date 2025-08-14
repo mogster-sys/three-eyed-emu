@@ -1,3 +1,22 @@
+// Import GitHub assets
+import arGraffiti from '@/assets/apps/AR_Graffiti.png';
+import archive from '@/assets/apps/ARchive.png';
+import birdemon from '@/assets/apps/Birdémon.png';
+import decisionMaking from '@/assets/apps/Decision_Making.png';
+import doggles from '@/assets/apps/Doggles.png';
+import screwLoose from '@/assets/apps/Got-a-screw-loose.png';
+import headsUp from '@/assets/apps/Heads_Up.png';
+import inkdividual from '@/assets/apps/Inkdividual.png';
+import lockFlute3d from '@/assets/apps/Lock_flute_and_3d.png';
+import sickSense from '@/assets/apps/SickSense.png';
+import sparkTester from '@/assets/apps/SparkTester.png';
+import titanic from '@/assets/apps/Titanic.png';
+import dreamJournal from '@/assets/apps/dreamjournal.png';
+import grooveBoss from '@/assets/apps/grooveboss.png';
+import sixMinuteXray from '@/assets/apps/six_minute_xray.png';
+import soldierify from '@/assets/apps/soldierify.png';
+import tappFlow from '@/assets/apps/tapp-flow.png';
+
 export interface AppData {
   id: string;
   name: string;
@@ -17,7 +36,7 @@ export const apps: AppData[] = [
     fullDescription: 'Transform any surface into your canvas with AR Graffiti. Use cutting-edge augmented reality technology to create, share, and discover digital street art that exists in the real world.',
     features: ['3D AR Drawing Tools', 'Location-Based Art', 'Community Gallery', 'Real-time Collaboration'],
     category: 'Creativity',
-    sourceImage: '/placeholder.svg'
+    sourceImage: arGraffiti
   },
   {
     id: 'birdemon',
@@ -26,7 +45,7 @@ export const apps: AppData[] = [
     fullDescription: 'Enter a world where mystical birds with extraordinary powers await discovery. Collect, train, and battle unique bird creatures in this immersive adventure game.',
     features: ['Creature Collection', 'Turn-based Combat', 'Breeding System', 'Multiplayer Battles'],
     category: 'Gaming',
-    sourceImage: '/placeholder.svg'
+    sourceImage: birdemon
   },
   {
     id: 'decision-lens',
@@ -35,7 +54,7 @@ export const apps: AppData[] = [
     fullDescription: 'Make better decisions with AI analysis of complex scenarios. Decision Lens breaks down tough choices into clear, actionable insights.',
     features: ['Scenario Analysis', 'Risk Assessment', 'Decision Trees', 'Outcome Prediction'],
     category: 'Productivity',
-    sourceImage: '/placeholder.svg'
+    sourceImage: decisionMaking
   },
   {
     id: 'doggles',
@@ -44,7 +63,7 @@ export const apps: AppData[] = [
     fullDescription: 'Revolutionary augmented reality eyewear designed specifically for dogs. Enhance your pet\'s world with interactive displays and health monitoring.',
     features: ['Pet Health Monitoring', 'Interactive AR Games', 'Training Assistance', 'Lost Pet Tracking'],
     category: 'Pet Tech',
-    sourceImage: '/placeholder.svg'
+    sourceImage: doggles
   },
   {
     id: 'dream-sync',
@@ -53,7 +72,7 @@ export const apps: AppData[] = [
     fullDescription: 'Capture, analyze, and understand your dreams like never before. Dream Sync uses advanced AI to help you decode the mysteries of your subconscious mind.',
     features: ['Dream Recording', 'Symbol Analysis', 'Pattern Recognition', 'Lucid Dream Training'],
     category: 'Wellness',
-    sourceImage: '/placeholder.svg'
+    sourceImage: dreamJournal
   },
   {
     id: 'groove-boss',
@@ -62,7 +81,7 @@ export const apps: AppData[] = [
     fullDescription: 'Become the ultimate rhythm master with Groove Boss. Create, mix, and perform beats with professional-grade tools designed for mobile music production.',
     features: ['Beat Creation', 'Live Performance Mode', 'Collaboration Tools', 'Cloud Sync'],
     category: 'Music',
-    sourceImage: '/placeholder.svg'
+    sourceImage: grooveBoss
   },
   {
     id: 'heads-up',
@@ -71,7 +90,7 @@ export const apps: AppData[] = [
     fullDescription: 'Transform your smartphone into a powerful heads-up display. Get real-time information overlay for navigation, fitness, and productivity without looking down.',
     features: ['Navigation Overlay', 'Fitness Tracking', 'Notification Display', 'Voice Control'],
     category: 'AR/VR',
-    sourceImage: '/placeholder.svg'
+    sourceImage: headsUp
   },
   {
     id: 'inkdividual',
@@ -80,7 +99,7 @@ export const apps: AppData[] = [
     fullDescription: 'Design your perfect tattoo with AI assistance and see how it looks on your body before committing. Connect with top artists worldwide.',
     features: ['AI Design Assistant', 'Body Simulation', 'Artist Marketplace', 'Style Recommendations'],
     category: 'Lifestyle',
-    sourceImage: '/placeholder.svg'
+    sourceImage: inkdividual
   },
   {
     id: 'lock-flute-3d',
@@ -89,7 +108,7 @@ export const apps: AppData[] = [
     fullDescription: 'Compose music in three-dimensional space with innovative tools that let you sculpt sound like never before. Perfect for film scoring and experimental music.',
     features: ['3D Audio Composition', 'Spatial Sound Design', 'Instrument Simulation', 'Export Options'],
     category: 'Music',
-    sourceImage: '/placeholder.svg'
+    sourceImage: lockFlute3d
   },
   {
     id: 'mind-scope',
@@ -98,7 +117,7 @@ export const apps: AppData[] = [
     fullDescription: 'Get deep psychological insights in just six minutes. Mind Scope uses advanced assessment techniques to provide accurate personality and mental health analysis.',
     features: ['Quick Assessment', 'Personality Analysis', 'Mental Health Insights', 'Progress Tracking'],
     category: 'Health',
-    sourceImage: '/placeholder.svg'
+    sourceImage: sixMinuteXray
   },
   {
     id: 'sicksense',
@@ -107,7 +126,7 @@ export const apps: AppData[] = [
     fullDescription: 'Detect potential health issues before symptoms appear using advanced biometric analysis and AI predictions. Your personal health guardian.',
     features: ['Biometric Monitoring', 'Early Detection', 'Health Predictions', 'Doctor Integration'],
     category: 'Health',
-    sourceImage: '/placeholder.svg'
+    sourceImage: sickSense
   },
   {
     id: 'soldierify',
@@ -116,7 +135,7 @@ export const apps: AppData[] = [
     fullDescription: 'Train like a soldier with this comprehensive fitness and discipline app. Build mental toughness and physical strength with proven military methodologies.',
     features: ['Military Workouts', 'Mental Training', 'Progress Tracking', 'Community Challenges'],
     category: 'Fitness',
-    sourceImage: '/placeholder.svg'
+    sourceImage: soldierify
   },
   {
     id: 'spark-spectrometer',
@@ -125,7 +144,7 @@ export const apps: AppData[] = [
     fullDescription: 'Turn your phone into a powerful spectrometer. Analyze materials, identify substances, and explore the molecular world around you.',
     features: ['Material Analysis', 'Substance Identification', 'Data Logging', 'Educational Content'],
     category: 'Science',
-    sourceImage: '/placeholder.svg'
+    sourceImage: sparkTester
   },
   {
     id: 'night-titanic',
@@ -134,7 +153,7 @@ export const apps: AppData[] = [
     fullDescription: 'Experience the final night aboard the Titanic in this historically accurate simulation. Make choices that could change history in this gripping interactive story.',
     features: ['Historical Accuracy', 'Multiple Endings', 'Character Interaction', 'Educational Content'],
     category: 'Education',
-    sourceImage: '/placeholder.svg'
+    sourceImage: titanic
   },
   {
     id: 'tapp-app',
@@ -143,7 +162,7 @@ export const apps: AppData[] = [
     fullDescription: 'Control your digital world with intuitive tap gestures. Tapp App creates a new paradigm for mobile interaction with customizable tap patterns.',
     features: ['Gesture Recognition', 'Custom Patterns', 'App Integration', 'Accessibility Features'],
     category: 'Utility',
-    sourceImage: '/placeholder.svg'
+    sourceImage: tappFlow
   },
   {
     id: 'threadgauge-ai',
@@ -152,7 +171,7 @@ export const apps: AppData[] = [
     fullDescription: 'Analyze fabric quality, predict fashion trends, and optimize textile production with cutting-edge AI technology designed for the fashion industry.',
     features: ['Fabric Analysis', 'Trend Prediction', 'Quality Assessment', 'Sustainability Metrics'],
     category: 'Fashion',
-    sourceImage: '/placeholder.svg'
+    sourceImage: screwLoose
   },
   {
     id: 'archive-box-scope',
@@ -161,6 +180,6 @@ export const apps: AppData[] = [
     fullDescription: 'See through boxes and containers with AR technology. Perfect for organizing storage spaces, warehouses, and finding lost items instantly.',
     features: ['AR X-ray Vision', 'Inventory Tracking', 'Search Functionality', 'Organization Tools'],
     category: 'Utility',
-    sourceImage: '/placeholder.svg'
+    sourceImage: archive
   }
 ];
