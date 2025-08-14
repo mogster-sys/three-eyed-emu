@@ -114,17 +114,17 @@ const AppCard = ({ app }: AppCardProps) => {
           </div>
 
           {/* Action buttons */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <Button 
               size="sm" 
-              className="w-full glow-effect transition-all duration-300"
+              className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
             >
               Get App
             </Button>
             <Button 
               size="sm" 
               variant="outline" 
-              className="w-full"
+              className="w-full text-xs py-1.5"
             >
               Learn More
             </Button>
