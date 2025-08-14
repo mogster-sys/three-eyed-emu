@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-// Using direct image URLs since they're in the public folder
-const emuLooksAtUser = "/EMU_looks_at_user.png";
-const emuLooksAway = "/EMU_looks_away.png";
+// Using the correct paths to the uploaded images
+const emuLooksAtUser = "/lovable-uploads/738b7601-972b-4883-a6fa-43cf124d1ee5.png";
+const emuLooksAway = "/lovable-uploads/8e2e770a-b838-4805-a890-074355e1a349.png";
+
+console.log("InteractiveEmu component loaded", { emuLooksAtUser, emuLooksAway });
 
 const InteractiveEmu = () => {
   const emuRef = useRef<HTMLDivElement>(null);
