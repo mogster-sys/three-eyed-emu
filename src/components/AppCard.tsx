@@ -86,9 +86,9 @@ const AppCard = ({ app }: AppCardProps) => {
     >
       <div className="flex h-full">
         {/* Left side - Image and Learn More Button */}
-        <div className="w-1/2 h-full relative overflow-hidden flex flex-col" style={{ backgroundColor: 'hsl(220 15% 10% / 0.8)' }}>
+        <div className="w-1/2 h-full relative overflow-hidden flex flex-col bg-secondary/30">
           {/* Image Container */}
-          <div className={`relative overflow-hidden ${isSquareImage ? 'flex-1 flex items-start pt-4' : 'absolute inset-0'}`} style={{ backgroundColor: 'hsl(220 15% 10% / 0.8)' }}>
+          <div className={`relative overflow-hidden bg-secondary/30 ${isSquareImage ? 'flex-1 flex items-start pt-4' : 'absolute inset-0'}`}>
             <img 
               src={app.sourceImage} 
               alt={app.name}
