@@ -10,6 +10,7 @@ interface AppCardProps {
 
 const AppCard = ({ app }: AppCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isSquareImage, setIsSquareImage] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
@@ -69,6 +70,13 @@ const AppCard = ({ app }: AppCardProps) => {
     }
   }, [isHovered]);
 
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    const aspectRatio = img.naturalWidth / img.naturalHeight;
+    // Consider images with aspect ratio between 0.8 and 1.2 as square-ish
+    setIsSquareImage(aspectRatio >= 0.8 && aspectRatio <= 1.2);
+  };
+
   return (
     <div
       ref={cardRef}
@@ -77,25 +85,44 @@ const AppCard = ({ app }: AppCardProps) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex h-full">
-        {/* Left side - Full Image */}
-        <div className="w-1/2 h-full relative overflow-hidden">
-          <img 
-            src={app.sourceImage} 
-            alt={app.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            onError={(e) => {
-              // Fallback if image fails to load
-              e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
-                <svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="400" height="250" fill="hsl(var(--muted))"/>
-                  <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="hsl(var(--muted-foreground))" font-size="24">${app.name}</text>
-                </svg>
-              `)}`;
-            }}
-          />
-          
-          {/* Gradient overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/20" />
+        {/* Left side - Image and Learn More Button */}
+        <div className="w-1/2 h-full relative overflow-hidden flex flex-col">
+          {/* Image Container */}
+          <div className={`relative overflow-hidden ${isSquareImage ? 'flex-1 flex items-start pt-4' : 'h-full'}`}>
+            <img 
+              src={app.sourceImage} 
+              alt={app.name}
+              className={`transition-transform duration-500 group-hover:scale-110 ${
+                isSquareImage 
+                  ? 'w-full h-auto max-h-full object-contain' 
+                  : 'w-full h-full object-cover'
+              }`}
+              onLoad={handleImageLoad}
+              onError={(e) => {
+                // Fallback if image fails to load
+                e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
+                  <svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="250" fill="hsl(var(--muted))"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="hsl(var(--muted-foreground))" font-size="24">${app.name}</text>
+                  </svg>
+                `)}`;
+              }}
+            />
+            
+            {/* Gradient overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/20" />
+          </div>
+
+          {/* Learn More Button - Always at bottom of left side */}
+          <div className="p-3">
+            <Button 
+              size="sm" 
+              variant="outline" 
+              className="w-full text-xs py-1.5"
+            >
+              Learn More
+            </Button>
+          </div>
         </div>
 
         {/* Right side - Content */}
@@ -113,20 +140,13 @@ const AppCard = ({ app }: AppCardProps) => {
             </p>
           </div>
 
-          {/* Action buttons */}
-          <div className="space-y-1.5">
+          {/* Get App button */}
+          <div>
             <Button 
               size="sm" 
               className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
             >
               Get App
-            </Button>
-            <Button 
-              size="sm" 
-              variant="outline" 
-              className="w-full text-xs py-1.5"
-            >
-              Learn More
             </Button>
           </div>
         </div>
