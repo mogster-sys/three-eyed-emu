@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import InteractiveEmu from './InteractiveEmu';
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -42,16 +43,22 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-end pr-16 relative">
+    <div className="min-h-screen flex items-center justify-center px-8 relative">
       {/* Background gradient effect */}
       <div 
         className="absolute inset-0 opacity-30"
         style={{
-          background: 'radial-gradient(ellipse at center right, hsl(var(--primary) / 0.2) 0%, transparent 70%)'
+          background: 'radial-gradient(ellipse at center, hsl(var(--primary) / 0.2) 0%, transparent 70%)'
         }}
       />
       
-      <div className="text-right z-10 max-w-2xl">
+      <div className="flex items-center gap-8 lg:gap-16 z-10 max-w-6xl w-full">
+        {/* Emu Mascot */}
+        <div className="flex-shrink-0">
+          <InteractiveEmu />
+        </div>
+        
+        <div className="text-left flex-1">
         <h1 
           ref={titleRef}
           className="text-7xl font-black mb-6 text-glow"
@@ -73,6 +80,7 @@ const HeroSection = () => {
           <br />
           Your gateway to innovation and creativity.
         </p>
+        </div>
       </div>
     </div>
   );

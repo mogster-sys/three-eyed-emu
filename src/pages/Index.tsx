@@ -26,9 +26,6 @@ const Index = () => {
       {/* Theme Toggle */}
       <ThemeToggle />
       
-      {/* Interactive Emu Mascot */}
-      <InteractiveEmu />
-      
       {/* Hero Section */}
       <HeroSection />
       
