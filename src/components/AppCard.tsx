@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { gsap } from 'gsap';
 import { AppData } from '@/data/apps';
 
@@ -115,13 +116,38 @@ const AppCard = ({ app }: AppCardProps) => {
 
           {/* Learn More Button */}
           <div className={`${isSquareImage ? 'p-3' : 'absolute bottom-3 left-3 right-3 z-10'}`}>
-            <Button 
-              size="sm" 
-              variant="outline" 
-              className="w-full text-xs py-1.5"
-            >
-              Learn More
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="w-full text-xs py-1.5"
+                >
+                  Learn More
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold">{app.name}</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <Badge variant="secondary" className="w-fit">
+                    {app.category}
+                  </Badge>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {app.fullDescription}
+                  </p>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold">Features:</h4>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                      {app.features.map((feature, index) => (
+                        <li key={index}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
 
