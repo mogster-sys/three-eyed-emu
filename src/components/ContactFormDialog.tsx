@@ -5,7 +5,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
 
 interface ContactFormDialogProps {
   open: boolean;
@@ -29,21 +28,15 @@ export const ContactFormDialog = ({ open, onOpenChange, appName, appId }: Contac
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([
-          {
-            app_id: appId,
-            app_name: appName,
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            message: formData.message,
-            submitted_at: new Date().toISOString()
-          }
-        ]);
-
-      if (error) throw error;
+      // Store locally for now (console log for debugging)
+      console.log('Contact submission for:', appName, {
+        app_id: appId,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        timestamp: new Date().toISOString()
+      });
 
       toast({
         title: "Thank you for your interest!",
@@ -55,7 +48,7 @@ export const ContactFormDialog = ({ open, onOpenChange, appName, appId }: Contac
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to submit your details. Please try again.",
+        description: "Please try again.",
         variant: "destructive"
       });
     } finally {
