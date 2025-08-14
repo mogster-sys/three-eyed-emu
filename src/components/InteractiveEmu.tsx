@@ -79,7 +79,7 @@ const InteractiveEmu = () => {
         className="relative w-80 h-80 transition-all duration-300 hover:scale-105"
       >
         <img
-          src={hasInteracted ? "/lovable-uploads/738b7601-972b-4883-a6fa-43cf124d1ee5.png" : "/lovable-uploads/8e2e770a-b838-4805-a890-074355e1a349.png"}
+          src={hasInteracted ? "/src/assets/EMU_looks_at_user.png" : "/src/assets/EMU_looks_away.png"}
           alt="Three Eyed Emu Mascot"
           className="w-full h-full object-contain filter drop-shadow-2xl"
           style={{
