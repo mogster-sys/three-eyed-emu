@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import emuLooksAtUser from '@/assets/EMU_looks_at_user.png';
+import emuLooksAway from '@/assets/EMU_looks_away.png';
 
 const InteractiveEmu = () => {
   const emuRef = useRef<HTMLDivElement>(null);
@@ -76,25 +78,52 @@ const InteractiveEmu = () => {
     <div className="fixed left-0 top-0 h-screen w-1/3 z-10 flex items-center justify-center">
       <div 
         ref={emuRef}
-        className="relative w-80 h-80 transition-all duration-300 hover:scale-105"
+        className="relative w-80 h-80 transition-all duration-300 hover-scale cursor-pointer"
+        onClick={() => {
+          if (!isAnimating) {
+            // Fun interaction - add a little bounce
+            gsap.to(emuRef.current, {
+              scale: 1.15,
+              duration: 0.1,
+              yoyo: true,
+              repeat: 1,
+              ease: "power2.out"
+            });
+          }
+        }}
       >
         <img
-          src={hasInteracted ? "/src/assets/EMU_looks_at_user.png" : "/src/assets/EMU_looks_away.png"}
+          src={hasInteracted ? emuLooksAtUser : emuLooksAway}
           alt="Three Eyed Emu Mascot"
-          className="w-full h-full object-contain filter drop-shadow-2xl"
+          className="w-full h-full object-contain filter drop-shadow-2xl animate-fade-in"
           style={{
             filter: 'drop-shadow(0 0 30px hsl(var(--primary) / 0.3))'
           }}
         />
         
-        {/* Glow effect behind emu */}
+        {/* Enhanced glow effect with multiple layers */}
         <div 
-          className="absolute inset-0 -z-10 rounded-full"
+          className="absolute inset-0 -z-10 rounded-full pulse"
           style={{
             background: 'radial-gradient(circle, hsl(var(--primary) / 0.2) 0%, transparent 70%)',
-            animation: 'pulse 3s ease-in-out infinite'
           }}
         />
+        
+        {/* Floating particles effect */}
+        <div className="absolute inset-0 -z-20 pointer-events-none">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-primary/20 rounded-full animate-pulse"
+              style={{
+                left: `${20 + (i * 15)}%`,
+                top: `${30 + (i % 3) * 20}%`,
+                animationDelay: `${i * 0.5}s`,
+                animationDuration: `${2 + i * 0.3}s`
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
