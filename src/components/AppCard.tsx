@@ -102,33 +102,26 @@ const AppCard = ({ app }: AppCardProps) => {
         onClick={handleCardClick}
       >
       <div className="flex h-full">
-        {/* Left side - Image and Learn More Button */}
-        <div className="w-1/2 h-full relative overflow-hidden flex flex-col bg-secondary/30">
-          {/* Image Container */}
-          <div className={`relative overflow-hidden bg-secondary/30 ${isSquareImage ? 'flex-1 flex items-center justify-center' : 'absolute inset-0'}`}>
-            <img 
-              src={app.sourceImage} 
-              alt={app.name}
-              className={`transition-transform duration-500 group-hover:scale-110 ${
-                isSquareImage 
-                  ? 'w-full h-auto max-h-full object-contain' 
-                  : 'w-full h-full object-cover'
-              }`}
-              onLoad={handleImageLoad}
-              onError={(e) => {
-                // Fallback if image fails to load
-                e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
-                  <svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="400" height="250" fill="hsl(var(--muted))"/>
-                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="hsl(var(--muted-foreground))" font-size="24">${app.name}</text>
-                  </svg>
-                `)}`;
-              }}
-            />
-            
-            {/* Gradient overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/20" />
-          </div>
+        {/* Left side - Image */}
+        <div className="w-1/2 h-full relative overflow-hidden bg-secondary/30">
+          <img 
+            src={app.sourceImage} 
+            alt={app.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            onLoad={handleImageLoad}
+            onError={(e) => {
+              // Fallback if image fails to load
+              e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
+                <svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="400" height="250" fill="hsl(var(--muted))"/>
+                  <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="hsl(var(--muted-foreground))" font-size="24">${app.name}</text>
+                </svg>
+              `)}`;
+            }}
+          />
+          
+          {/* Gradient overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/20" />
         </div>
 
         {/* Right side - Content */}
