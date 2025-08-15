@@ -96,7 +96,7 @@ const AppCard = ({ app }: AppCardProps) => {
     <>
       <div
         ref={cardRef}
-        className="relative w-full h-64 glassmorphic rounded-xl overflow-hidden cursor-pointer glow-effect group"
+        className="relative w-full h-64 project-card overflow-hidden cursor-pointer group"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleCardClick}
