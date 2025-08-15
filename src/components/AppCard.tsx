@@ -145,12 +145,12 @@ const AppCard = ({ app }: AppCardProps) => {
 
           {/* Action buttons */}
           <div className="flex gap-2">
-            {!isNotReady ? (
+            {!isNotReady && (
               <Dialog>
                 <DialogTrigger asChild>
                   <Button 
                     size="sm" 
-                    className="flex-1 text-xs py-1.5 h-8"
+                    className="flex-1 text-xs py-1.5"
                     onClick={(e) => e.stopPropagation()}
                   >
                     Get App
@@ -163,18 +163,6 @@ const AppCard = ({ app }: AppCardProps) => {
                   <AppCommerce app={app} />
                 </DialogContent>
               </Dialog>
-            ) : (
-              <Button 
-                size="sm" 
-                variant="outline"
-                className="flex-1 text-xs py-1.5 h-8 opacity-60"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowContactForm(true);
-                }}
-              >
-                {appStatus === 'training' ? 'In Training' : 'Under Construction'}
-              </Button>
             )}
             
             <Dialog>
@@ -182,7 +170,7 @@ const AppCard = ({ app }: AppCardProps) => {
                 <Button 
                   size="sm" 
                   variant="outline"
-                  className="flex-1 text-xs py-1.5 h-8"
+                  className="flex-1 text-xs py-1.5"
                   onClick={(e) => e.stopPropagation()}
                 >
                   About App
@@ -202,6 +190,12 @@ const AppCard = ({ app }: AppCardProps) => {
       {/* Enhanced hover effect overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       
+      {/* Status watermark overlay */}
+      {isNotReady && (
+        <div className="absolute top-3 left-3 z-20">
+          <AppStatusBadge status={appStatus} className="backdrop-blur-sm" />
+        </div>
+      )}
     </div>
 
     <ContactFormDialog 
