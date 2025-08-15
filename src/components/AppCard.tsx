@@ -153,7 +153,7 @@ const AppCard = ({ app }: AppCardProps) => {
                     className="flex-1 text-xs py-1.5"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    Buy App
+                    Get App
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
