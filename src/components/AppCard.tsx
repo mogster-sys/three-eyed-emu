@@ -136,17 +136,46 @@ const AppCard = ({ app }: AppCardProps) => {
           <div>
             <div className="flex items-start justify-between mb-3">
               <h3 className="font-bold text-xl leading-tight pr-2">{app.name}</h3>
-              <div className="flex flex-col gap-1 shrink-0">
-                <Badge variant="secondary" className="text-xs">
-                  {app.category}
-                </Badge>
-                <AppStatusBadge status={appStatus} />
-              </div>
             </div>
             
             <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
               {app.description}
             </p>
+          </div>
+
+          {/* Get App button */}
+          <div>
+            {isNotReady ? (
+              <Button 
+                size="sm" 
+                variant="outline"
+                className="w-full text-xs py-1.5 opacity-60"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowContactForm(true);
+                }}
+              >
+                {appStatus === 'training' ? 'In Training' : 'Under Construction'}
+              </Button>
+            ) : (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button 
+                    size="sm" 
+                    className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Get App
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-3xl font-bold">{app.name} - Get Started</DialogTitle>
+                  </DialogHeader>
+                  <AppCommerce app={app} />
+                </DialogContent>
+              </Dialog>
+            )}
           </div>
         </div>
       </div>
