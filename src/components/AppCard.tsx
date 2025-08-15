@@ -96,32 +96,76 @@ const AppCard = ({ app }: AppCardProps) => {
     <>
       <div
         ref={cardRef}
-        className="relative w-full h-64 project-card overflow-hidden cursor-pointer group"
+        className="relative w-full h-64 glassmorphic rounded-xl overflow-hidden cursor-pointer glow-effect group"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleCardClick}
       >
       <div className="flex h-full">
-        {/* Left side - Image */}
-        <div className="w-1/2 h-full relative overflow-hidden bg-secondary/30">
-          <img 
-            src={app.sourceImage} 
-            alt={app.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            onLoad={handleImageLoad}
-            onError={(e) => {
-              // Fallback if image fails to load
-              e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
-                <svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="400" height="250" fill="hsl(var(--muted))"/>
-                  <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="hsl(var(--muted-foreground))" font-size="24">${app.name}</text>
-                </svg>
-              `)}`;
-            }}
-          />
-          
-          {/* Gradient overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/20" />
+        {/* Left side - Image and Learn More Button */}
+        <div className="w-1/2 h-full relative overflow-hidden flex flex-col bg-secondary/30">
+          {/* Image Container */}
+          <div className={`relative overflow-hidden bg-secondary/30 ${isSquareImage ? 'flex-1 flex items-start pt-4' : 'absolute inset-0'}`}>
+            <img 
+              src={app.sourceImage} 
+              alt={app.name}
+              className={`transition-transform duration-500 group-hover:scale-110 ${
+                isSquareImage 
+                  ? 'w-full h-auto max-h-full object-contain' 
+                  : 'w-full h-full object-cover'
+              }`}
+              onLoad={handleImageLoad}
+              onError={(e) => {
+                // Fallback if image fails to load
+                e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
+                  <svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="250" fill="hsl(var(--muted))"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="hsl(var(--muted-foreground))" font-size="24">${app.name}</text>
+                  </svg>
+                `)}`;
+              }}
+            />
+            
+            {/* Gradient overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/20" />
+          </div>
+
+          {/* Learn More Button */}
+          <div className={`${isSquareImage ? 'p-3' : 'absolute bottom-3 left-3 right-3 z-10'}`}>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="w-full text-xs py-1.5"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Learn More
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold">{app.name}</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <Badge variant="secondary" className="w-fit">
+                    {app.category}
+                  </Badge>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {app.fullDescription}
+                  </p>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold">Features:</h4>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                      {app.features.map((feature, index) => (
+                        <li key={index}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
 
         {/* Right side - Content */}
@@ -129,6 +173,12 @@ const AppCard = ({ app }: AppCardProps) => {
           <div>
             <div className="flex items-start justify-between mb-3">
               <h3 className="font-bold text-xl leading-tight pr-2">{app.name}</h3>
+              <div className="flex flex-col gap-1 shrink-0">
+                <Badge variant="secondary" className="text-xs">
+                  {app.category}
+                </Badge>
+                <AppStatusBadge status={appStatus} />
+              </div>
             </div>
             
             <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
@@ -136,17 +186,29 @@ const AppCard = ({ app }: AppCardProps) => {
             </p>
           </div>
 
-          {/* Action buttons */}
-          <div className="flex gap-2">
-            {!isNotReady && (
+          {/* Get App button */}
+          <div>
+            {isNotReady ? (
+              <Button 
+                size="sm" 
+                variant="outline"
+                className="w-full text-xs py-1.5 opacity-60"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowContactForm(true);
+                }}
+              >
+                {appStatus === 'training' ? 'In Training' : 'Under Construction'}
+              </Button>
+            ) : (
               <Dialog>
                 <DialogTrigger asChild>
                   <Button 
                     size="sm" 
-                    className="flex-1 text-xs py-1.5"
+                    className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    Buy App
+                    Get App
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -157,25 +219,6 @@ const AppCard = ({ app }: AppCardProps) => {
                 </DialogContent>
               </Dialog>
             )}
-            
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button 
-                  size="sm" 
-                  variant="outline"
-                  className="flex-1 text-xs py-1.5"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  About App
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
-                  <DialogTitle className="text-3xl font-bold">{app.name}</DialogTitle>
-                </DialogHeader>
-                <AppCommerce app={app} />
-              </DialogContent>
-            </Dialog>
           </div>
         </div>
       </div>
