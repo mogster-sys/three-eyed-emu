@@ -143,21 +143,9 @@ const AppCard = ({ app }: AppCardProps) => {
             </p>
           </div>
 
-          {/* Get App button */}
-          <div>
-            {isNotReady ? (
-              <Button 
-                size="sm" 
-                variant="outline"
-                className="w-full text-xs py-1.5 opacity-60"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowContactForm(true);
-                }}
-              >
-                {appStatus === 'training' ? 'In Training' : 'Under Construction'}
-              </Button>
-            ) : (
+          {/* Get App button - only for ready apps */}
+          {!isNotReady && (
+            <div>
               <Dialog>
                 <DialogTrigger asChild>
                   <Button 
@@ -175,20 +163,14 @@ const AppCard = ({ app }: AppCardProps) => {
                   <AppCommerce app={app} />
                 </DialogContent>
               </Dialog>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Enhanced hover effect overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       
-      {/* Status watermark overlay */}
-      {isNotReady && (
-        <div className="absolute top-3 left-3 z-20">
-          <AppStatusBadge status={appStatus} className="backdrop-blur-sm" />
-        </div>
-      )}
     </div>
 
     <ContactFormDialog 
