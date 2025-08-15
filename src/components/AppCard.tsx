@@ -105,7 +105,7 @@ const AppCard = ({ app }: AppCardProps) => {
         {/* Left side - Image and Learn More Button */}
         <div className="w-1/2 h-full relative overflow-hidden flex flex-col bg-secondary/30">
           {/* Image Container */}
-          <div className={`relative overflow-hidden bg-secondary/30 ${isSquareImage ? 'flex-1 flex items-start justify-center pt-2' : 'absolute inset-0'}`}>
+          <div className={`relative overflow-hidden bg-secondary/30 ${isSquareImage ? 'flex-1 flex items-center justify-center' : 'absolute inset-0'}`}>
             <img 
               src={app.sourceImage} 
               alt={app.name}
@@ -153,7 +153,7 @@ const AppCard = ({ app }: AppCardProps) => {
                     className="flex-1 text-xs py-1.5"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    Get App
+                    Buy App
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
