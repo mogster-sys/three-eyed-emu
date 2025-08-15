@@ -148,41 +148,6 @@ const AppCard = ({ app }: AppCardProps) => {
               {app.description}
             </p>
           </div>
-
-          {/* Get App button */}
-          <div>
-            {isNotReady ? (
-              <Button 
-                size="sm" 
-                variant="outline"
-                className="w-full text-xs py-1.5 opacity-60"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowContactForm(true);
-                }}
-              >
-                {appStatus === 'training' ? 'In Training' : 'Under Construction'}
-              </Button>
-            ) : (
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button 
-                    size="sm" 
-                    className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Get App
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="text-3xl font-bold">{app.name} - Get Started</DialogTitle>
-                  </DialogHeader>
-                  <AppCommerce app={app} />
-                </DialogContent>
-              </Dialog>
-            )}
-          </div>
         </div>
       </div>
 
