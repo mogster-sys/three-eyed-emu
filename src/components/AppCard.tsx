@@ -129,43 +129,6 @@ const AppCard = ({ app }: AppCardProps) => {
             {/* Gradient overlay for better text readability */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/20" />
           </div>
-
-          {/* Learn More Button */}
-          <div className={`${isSquareImage ? 'p-3' : 'absolute bottom-3 left-3 right-3 z-10'}`}>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  className="w-full text-xs py-1.5"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Learn More
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold">{app.name}</DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4">
-                  <Badge variant="secondary" className="w-fit">
-                    {app.category}
-                  </Badge>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {app.fullDescription}
-                  </p>
-                  <div className="space-y-2">
-                    <h4 className="font-semibold">Features:</h4>
-                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                      {app.features.map((feature, index) => (
-                        <li key={index}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </DialogContent>
-            </Dialog>
-          </div>
         </div>
 
         {/* Right side - Content */}
