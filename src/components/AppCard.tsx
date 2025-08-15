@@ -171,14 +171,8 @@ const AppCard = ({ app }: AppCardProps) => {
         {/* Right side - Content */}
         <div className="w-1/2 p-6 flex flex-col justify-between">
           <div>
-            <div className="flex items-start justify-between mb-3">
-              <h3 className="font-bold text-xl leading-tight pr-2">{app.name}</h3>
-              <div className="flex flex-col gap-1 shrink-0">
-                <Badge variant="secondary" className="text-xs">
-                  {app.category}
-                </Badge>
-                <AppStatusBadge status={appStatus} />
-              </div>
+            <div className="mb-3">
+              <h3 className="font-bold text-xl leading-tight">{app.name}</h3>
             </div>
             
             <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
