@@ -143,14 +143,14 @@ const AppCard = ({ app }: AppCardProps) => {
             </p>
           </div>
 
-          {/* Get App button - only for ready apps */}
-          {!isNotReady && (
-            <div>
+          {/* Action buttons */}
+          <div className="flex gap-2">
+            {!isNotReady ? (
               <Dialog>
                 <DialogTrigger asChild>
                   <Button 
                     size="sm" 
-                    className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
+                    className="flex-1 text-xs py-1.5 h-8"
                     onClick={(e) => e.stopPropagation()}
                   >
                     Get App
@@ -163,8 +163,39 @@ const AppCard = ({ app }: AppCardProps) => {
                   <AppCommerce app={app} />
                 </DialogContent>
               </Dialog>
-            </div>
-          )}
+            ) : (
+              <Button 
+                size="sm" 
+                variant="outline"
+                className="flex-1 text-xs py-1.5 h-8 opacity-60"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowContactForm(true);
+                }}
+              >
+                {appStatus === 'training' ? 'In Training' : 'Under Construction'}
+              </Button>
+            )}
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  size="sm" 
+                  variant="outline"
+                  className="flex-1 text-xs py-1.5 h-8"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  About App
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-3xl font-bold">{app.name}</DialogTitle>
+                </DialogHeader>
+                <AppCommerce app={app} />
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </div>
 
