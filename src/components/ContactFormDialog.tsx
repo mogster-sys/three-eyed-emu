@@ -58,67 +58,75 @@ export const ContactFormDialog = ({ open, onOpenChange, appName, appId }: Contac
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md">
-        <DialogHeader>
-          <DialogTitle>Get Notified About {appName}</DialogTitle>
-          <DialogDescription>
+      <DialogContent className="max-w-md glassmorphic border-primary/20 glow-effect">
+        <DialogHeader className="border-b border-primary/20 pb-4 mb-6">
+          <DialogTitle className="text-xl font-bold text-glow">Get Notified About {appName}</DialogTitle>
+          <DialogDescription className="text-muted-foreground/80">
             This app is still in development. Leave your details and we'll contact you when it's ready!
           </DialogDescription>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Name *</Label>
+            <Label htmlFor="name" className="text-primary font-medium">Name *</Label>
             <Input
               id="name"
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
               required
+              className="glassmorphic border-primary/20 focus:border-primary/40 focus:ring-primary/20"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email" className="text-primary font-medium">Email *</Label>
             <Input
               id="email"
               type="email"
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
               required
+              className="glassmorphic border-primary/20 focus:border-primary/40 focus:ring-primary/20"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="phone">Phone (optional)</Label>
+            <Label htmlFor="phone" className="text-primary font-medium">Phone (optional)</Label>
             <Input
               id="phone"
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+              className="glassmorphic border-primary/20 focus:border-primary/40 focus:ring-primary/20"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="message">Message (optional)</Label>
+            <Label htmlFor="message" className="text-primary font-medium">Message (optional)</Label>
             <Textarea
               id="message"
               placeholder="Any specific features you're excited about?"
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
               rows={3}
+              className="glassmorphic border-primary/20 focus:border-primary/40 focus:ring-primary/20 resize-none"
             />
           </div>
           
-          <div className="flex gap-2 pt-2">
+          <div className="flex gap-3 pt-4">
             <Button
               type="button"
               variant="outline"
               onClick={() => onOpenChange(false)}
-              className="flex-1"
+              className="flex-1 glassmorphic border-primary/20 hover:border-primary/40 hover:bg-primary/10"
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={isSubmitting} className="flex-1">
+            <Button 
+              type="submit" 
+              disabled={isSubmitting} 
+              className="flex-1 glow-effect bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary"
+            >
               {isSubmitting ? 'Submitting...' : 'Notify Me'}
             </Button>
           </div>

@@ -143,22 +143,25 @@ const AppCard = ({ app }: AppCardProps) => {
                   Learn More
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold">{app.name}</DialogTitle>
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto glassmorphic border-primary/20 glow-effect">
+                <DialogHeader className="border-b border-primary/20 pb-4 mb-6">
+                  <DialogTitle className="text-2xl font-bold text-glow">{app.name}</DialogTitle>
                 </DialogHeader>
-                <div className="space-y-4">
-                  <Badge variant="secondary" className="w-fit">
+                <div className="space-y-6">
+                  <Badge variant="secondary" className="w-fit bg-primary/20 text-primary border-primary/30 glow-effect">
                     {app.category}
                   </Badge>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-base">
                     {app.fullDescription}
                   </p>
-                  <div className="space-y-2">
-                    <h4 className="font-semibold">Features:</h4>
-                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                  <div className="space-y-3 bg-card/50 p-4 rounded-lg border border-primary/10">
+                    <h4 className="font-semibold text-primary text-glow">Features:</h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
                       {app.features.map((feature, index) => (
-                        <li key={index}>{feature}</li>
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="text-primary text-xs mt-1">▶</span>
+                          {feature}
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -205,11 +208,15 @@ const AppCard = ({ app }: AppCardProps) => {
                     Get App
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="text-3xl font-bold">{app.name} - Get Started</DialogTitle>
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glassmorphic border-primary/20 glow-effect">
+                  <DialogHeader className="border-b border-primary/20 pb-4 mb-6">
+                    <DialogTitle className="text-3xl font-bold text-glow bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+                      {app.name} - Get Started
+                    </DialogTitle>
                   </DialogHeader>
-                  <AppCommerce app={app} />
+                  <div className="bg-card/30 rounded-lg p-1 border border-primary/10">
+                    <AppCommerce app={app} />
+                  </div>
                 </DialogContent>
               </Dialog>
             )}
