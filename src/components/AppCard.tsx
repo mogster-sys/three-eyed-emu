@@ -17,6 +17,7 @@ const AppCard = ({ app }: AppCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isSquareImage, setIsSquareImage] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,7 @@ const AppCard = ({ app }: AppCardProps) => {
     const content = contentRef.current;
     const icon = iconRef.current;
     
-    if (!card || !content || !icon) return;
+    if (!card || !content || !icon || dialogOpen) return;
 
     if (isHovered) {
       const tl = gsap.timeline();
@@ -77,7 +78,7 @@ const AppCard = ({ app }: AppCardProps) => {
         ease: "power2.out"
       }, 0);
     }
-  }, [isHovered]);
+  }, [isHovered, dialogOpen]);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -132,7 +133,7 @@ const AppCard = ({ app }: AppCardProps) => {
 
           {/* Learn More Button */}
           <div className={`${isSquareImage ? 'p-3' : 'absolute bottom-3 left-3 right-3 z-10'}`}>
-            <Dialog>
+            <Dialog onOpenChange={(open) => setDialogOpen(open)}>
               <DialogTrigger asChild>
                 <Button 
                   size="sm" 
@@ -198,7 +199,7 @@ const AppCard = ({ app }: AppCardProps) => {
                 {appStatus === 'training' ? 'In Training' : 'Under Construction'}
               </Button>
             ) : (
-              <Dialog>
+              <Dialog onOpenChange={(open) => setDialogOpen(open)}>
                 <DialogTrigger asChild>
                   <Button 
                     size="sm" 
