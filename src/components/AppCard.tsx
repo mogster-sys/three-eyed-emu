@@ -26,58 +26,8 @@ const AppCard = ({ app }: AppCardProps) => {
   const isNotReady = appStatus !== 'ready';
 
   useEffect(() => {
-    const card = cardRef.current;
-    const content = contentRef.current;
-    const icon = iconRef.current;
-    
-    if (!card || !content || !icon || dialogOpen) return;
-
-    if (isHovered) {
-      const tl = gsap.timeline();
-      
-      // Lift and expand card
-      tl.to(card, {
-        scale: 1.02,
-        y: -5,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-      
-      // Fade out icon, fade in content
-      tl.to(icon, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.2
-      }, 0.1)
-      .to(content, {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        ease: "back.out(1.7)"
-      }, 0.2);
-      
-    } else {
-      const tl = gsap.timeline();
-      
-      // Fade out content, fade in icon
-      tl.to(content, {
-        opacity: 0,
-        y: 20,
-        duration: 0.2
-      })
-      .to(icon, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.3,
-        ease: "back.out(1.7)"
-      }, 0.1)
-      .to(card, {
-        scale: 1,
-        y: 0,
-        duration: 0.3,
-        ease: "power2.out"
-      }, 0);
-    }
+    // Disabled GSAP hover animations to prevent twitching/jumping
+    // All hover effects are now handled via stable CSS transitions.
   }, [isHovered, dialogOpen]);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
