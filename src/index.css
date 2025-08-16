@@ -96,7 +96,6 @@ Dark, modern, and elegant with glowing neon accents
   
   .glow-effect:hover {
     box-shadow: var(--shadow-intense);
-    transform: translateY(-2px);
   }
 
   .glassmorphic {
