@@ -47,7 +47,7 @@ const AppCard = ({ app }: AppCardProps) => {
     <>
       <div
         ref={cardRef}
-        className="relative w-full h-64 glassmorphic rounded-xl overflow-hidden cursor-pointer glow-effect group transform-gpu will-change-transform transition-transform"
+        className="relative w-full h-64 glassmorphic rounded-xl overflow-hidden cursor-pointer glow-effect group"
         onClick={handleCardClick}
       >
       <div className="flex h-full">
@@ -58,7 +58,7 @@ const AppCard = ({ app }: AppCardProps) => {
             <img 
               src={app.sourceImage} 
               alt={app.name}
-              className={`transition-transform duration-300 hover-scale ${
+              className={`${
                 isSquareImage 
                   ? 'w-full h-auto max-h-full object-contain' 
                   : 'w-full h-full object-cover'
