@@ -54,13 +54,13 @@ const AppCard = ({ app }: AppCardProps) => {
         {/* Left side - Image and Learn More Button */}
         <div className="w-1/2 h-full relative overflow-hidden flex flex-col bg-secondary/30">
           {/* Image Container */}
-          <div className={`relative overflow-hidden bg-secondary/30 ${isSquareImage ? 'flex-1 flex items-start pt-4' : 'absolute inset-0'}`}>
+          <div className="absolute inset-0 overflow-hidden bg-secondary/30">
             <img 
               src={app.sourceImage} 
               alt={app.name}
               className={`${
                 isSquareImage 
-                  ? 'w-full h-auto max-h-full object-contain' 
+                  ? 'w-full h-full object-contain' 
                   : 'w-full h-full object-cover'
               }`}
               onLoad={handleImageLoad}
@@ -173,9 +173,6 @@ const AppCard = ({ app }: AppCardProps) => {
         </div>
       </div>
 
-      {/* Enhanced hover effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-      
       {/* Status watermark overlay */}
       {isNotReady && (
         <div className="absolute top-3 left-3 z-20">
