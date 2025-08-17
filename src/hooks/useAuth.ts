@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { User } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, isSupabaseAvailable } from '@/integrations/supabase/client';
 import { Database } from '@/lib/types';
 
 type UserProfile = Database['public']['Tables']['users']['Row'];
@@ -11,6 +11,12 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Frontend-only mode: skip auth when Supabase unavailable
+    if (!isSupabaseAvailable || !supabase) {
+      setLoading(false);
+      return;
+    }
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
@@ -36,6 +42,8 @@ export const useAuth = () => {
   }, []);
 
   const fetchProfile = async (userId: string) => {
+    if (!supabase) return;
+    
     try {
       const { data, error } = await supabase
         .from('users')
@@ -56,6 +64,8 @@ export const useAuth = () => {
   };
 
   const signUp = async (email: string, password: string, fullName?: string) => {
+    if (!supabase) throw new Error('Supabase not available - connect backend to enable auth');
+    
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -76,6 +86,8 @@ export const useAuth = () => {
   };
 
   const signIn = async (email: string, password: string) => {
+    if (!supabase) throw new Error('Supabase not available - connect backend to enable auth');
+    
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -86,6 +98,8 @@ export const useAuth = () => {
   };
 
   const signOut = async () => {
+    if (!supabase) return;
+    
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   };
@@ -97,5 +111,6 @@ export const useAuth = () => {
     signUp,
     signIn,
     signOut,
+    isSupabaseAvailable,
   };
 };

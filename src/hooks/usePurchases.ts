@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, isSupabaseAvailable } from '@/integrations/supabase/client';
 import { Database } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 
@@ -9,7 +9,10 @@ export const usePurchases = (userId?: string) => {
   return useQuery({
     queryKey: ['purchases', userId],
     queryFn: async () => {
-      if (!userId) throw new Error('User ID required');
+      if (!isSupabaseAvailable || !supabase || !userId) {
+        // Frontend-only mode: return empty array
+        return [];
+      }
       
       const { data, error } = await supabase
         .from('purchases')
@@ -28,7 +31,7 @@ export const usePurchases = (userId?: string) => {
       if (error) throw error;
       return data;
     },
-    enabled: !!userId,
+    enabled: !!userId && isSupabaseAvailable,
   });
 };
 
@@ -38,6 +41,10 @@ export const useCreatePurchase = () => {
 
   return useMutation({
     mutationFn: async (purchase: Database['public']['Tables']['purchases']['Insert']) => {
+      if (!isSupabaseAvailable || !supabase) {
+        throw new Error('Backend not available - connect Supabase to enable purchases');
+      }
+      
       const { data, error } = await supabase
         .from('purchases')
         .insert(purchase)
@@ -57,7 +64,7 @@ export const useCreatePurchase = () => {
     onError: (error) => {
       toast({
         title: "Purchase Failed",
-        description: "There was an error processing your purchase.",
+        description: error.message || "There was an error processing your purchase.",
         variant: "destructive",
       });
     },
