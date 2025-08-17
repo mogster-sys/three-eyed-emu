@@ -7,6 +7,7 @@ import AppPortfolio from '@/components/AppPortfolio';
 import { MarketplacePortfolio } from '@/components/MarketplacePortfolio';
 import { CartSheet } from '@/components/CartSheet';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/hooks/useAuth';
 import { AuthDialog } from '@/components/AuthDialog';
 import { User, LogOut } from 'lucide-react';
@@ -14,7 +15,7 @@ import { User, LogOut } from 'lucide-react';
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [authDialogOpen, setAuthDialogOpen] = useState(false);
-  const { user, profile, signOut, loading } = useAuth();
+  const { user, profile, signOut, loading, isSupabaseAvailable } = useAuth();
 
   useEffect(() => {
     // Set dark mode by default
@@ -35,6 +36,9 @@ const Index = () => {
       <nav className="fixed top-4 right-4 z-50 flex items-center gap-2">
         <ThemeToggle />
         <CartSheet />
+        {!isSupabaseAvailable && (
+          <Badge variant="outline" className="hidden sm:inline-flex">Preview mode</Badge>
+        )}
         
         {!loading && (
           <>
