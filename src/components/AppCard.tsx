@@ -51,8 +51,8 @@ const AppCard = ({ app }: AppCardProps) => {
         onClick={handleCardClick}
       >
       <div className="flex h-full">
-        {/* Left side - Image and Learn More Button */}
-        <div className="w-1/2 h-full relative overflow-hidden flex flex-col bg-secondary/30">
+        {/* Left side - Image */}
+        <div className="w-1/2 h-full relative overflow-hidden bg-secondary/30">
           {/* Image Container */}
           <div className="absolute inset-0 overflow-hidden bg-secondary/30">
             <img 
@@ -78,46 +78,6 @@ const AppCard = ({ app }: AppCardProps) => {
             {/* Gradient overlay for better text readability */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/20" />
           </div>
-
-          {/* Learn More Button */}
-          <div className={`${isSquareImage ? 'p-3' : 'absolute bottom-3 left-3 right-3 z-10'}`}>
-            <Dialog onOpenChange={(open) => setDialogOpen(open)}>
-              <DialogTrigger asChild>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  className="w-full text-xs py-1.5"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Learn More
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto glassmorphic border-primary/20 glow-effect">
-                <DialogHeader className="border-b border-primary/20 pb-4 mb-6">
-                  <DialogTitle className="text-2xl font-bold text-glow">{app.name}</DialogTitle>
-                </DialogHeader>
-                <div className="space-y-6">
-                  <Badge variant="secondary" className="w-fit bg-primary/20 text-primary border-primary/30 glow-effect">
-                    {app.category}
-                  </Badge>
-                  <p className="text-muted-foreground leading-relaxed text-base">
-                    {app.fullDescription}
-                  </p>
-                  <div className="space-y-3 bg-card/50 p-4 rounded-lg border border-primary/10">
-                    <h4 className="font-semibold text-primary text-glow">Features:</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      {app.features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="text-primary text-xs mt-1">▶</span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </DialogContent>
-            </Dialog>
-          </div>
         </div>
 
         {/* Right side - Content */}
@@ -130,6 +90,46 @@ const AppCard = ({ app }: AppCardProps) => {
             <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
               {app.description}
             </p>
+
+            {/* Learn More Button */}
+            <div className="mb-4">
+              <Dialog onOpenChange={(open) => setDialogOpen(open)}>
+                <DialogTrigger asChild>
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="w-full text-xs py-1.5"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Learn More
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto glassmorphic border-primary/20 glow-effect">
+                  <DialogHeader className="border-b border-primary/20 pb-4 mb-6">
+                    <DialogTitle className="text-2xl font-bold text-glow">{app.name}</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6">
+                    <Badge variant="secondary" className="w-fit bg-primary/20 text-primary border-primary/30 glow-effect">
+                      {app.category}
+                    </Badge>
+                    <p className="text-muted-foreground leading-relaxed text-base">
+                      {app.fullDescription}
+                    </p>
+                    <div className="space-y-3 bg-card/50 p-4 rounded-lg border border-primary/10">
+                      <h4 className="font-semibold text-primary text-glow">Features:</h4>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {app.features.map((feature, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="text-primary text-xs mt-1">▶</span>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
 
           {/* Get App button */}
