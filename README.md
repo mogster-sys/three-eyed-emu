@@ -1,54 +1,30 @@
-# Welcome to your Lovable project
+# Three Eyed Emu Website
 
-## Project info
+A modern React/TypeScript website showcasing the Three Eyed Emu brand with an interactive mascot, app portfolio, and marketplace functionality.
 
-**URL**: https://lovable.dev/projects/9972953e-17b3-410c-866f-54c3241ea0a1
+## Repository
 
-## How can I edit this code?
+**GitHub**: https://github.com/mogster-sys/three-eyed-emu
 
-There are several ways of editing your application.
+## Development Setup
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/9972953e-17b3-410c-866f-54c3241ea0a1) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requirements: Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone https://github.com/mogster-sys/three-eyed-emu.git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to the project directory
+cd three-eyed-emu
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The development server will start on `http://localhost:5173` (or another available port).
 
 ## What technologies are used for this project?
 
