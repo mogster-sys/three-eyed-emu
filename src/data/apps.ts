@@ -32,7 +32,7 @@ export const apps: AppData[] = [
   {
     id: 'ar-graffiti',
     name: 'Augmented Graffiti (AR graffiti)',
-    description: 'Geotagged graffiti and messages in AR',
+    description: 'Geotagged graffiti, tag Augmented reality private messages',
     fullDescription: 'Geotagged graffiti or messages can be left in the manner of a cold war spy dead drop or modern geocache, only retrievable and visible by another user of the app attending the same location the message was made, only unlockable through a secure augmented reality interface, only viewable at the site. Keep your messages private, tag the joint without getting arrested, if you don\'t mind looking daft pretending your phones a spray can. (still works just type on a keyboard.)',
     features: ['Geotagged Messages', 'AR Interface', 'Location-Based', 'Private Messaging'],
     category: 'Entertainment/ social media',
@@ -59,7 +59,7 @@ export const apps: AppData[] = [
   {
     id: 'doggles',
     name: 'Doggles',
-    description: 'See the world through your dog\'s eyes',
+    description: 'See the world through your dogs eyes, breed specific k9 emulator',
     fullDescription: 'See the world through the eyes of your K9 companion, with breed specific features such as visual field, not all dogs can see the TV, or the red tennis ball, find out if your dog\'s behaviours could be breed specific differences in vision.',
     features: ['Breed-Specific Vision', 'Visual Field Simulation', 'Color Perception', 'Behavior Analysis'],
     category: 'Utility/ Dog-vision',
@@ -77,7 +77,7 @@ export const apps: AppData[] = [
   {
     id: 'groove-boss',
     name: 'groove boss',
-    description: 'Bluetooth headphones proximity music sharing',
+    description: 'Bluetooth headphone proximity triggered musical greeting, get noticed entering their frame with your boss tune',
     fullDescription: 'like a doorbell or greeting between users of the app wearing Bluetooth headphones, plays a personized musical greeting or tune when in proximity, get noticed by arriving with your boss tune, also a impromptu flash mob silent disco.',
     features: ['Proximity Detection', 'Musical Greetings', 'Silent Disco', 'Personalized Tunes'],
     category: 'Bluetooth headphones proximity music sharing',
@@ -86,16 +86,16 @@ export const apps: AppData[] = [
   {
     id: 'heads-up',
     name: 'Heads Up on the flipside',
-    description: 'Beautiful virtual coin toss collection',
-    fullDescription: 'A selection of beautiful coins from different times and places, to flip for heads or tails, settle the score or decide in style.',
-    features: ['Historic Coins', 'Beautiful Animations', 'Decision Making', 'Collection'],
+    description: 'Beautiful coin collection, virtual random toss',
+    fullDescription: 'An elegant collection of historic coins from different eras and civilizations. Perfect for making decisions, settling debates, or simply enjoying beautifully animated coin tosses with authentic physics.',
+    features: ['Historic Coins', 'Realistic Physics', 'Decision Making', 'Coin Collection'],
     category: 'Virtual random Coin toss',
     sourceImage: headsUp
   },
   {
     id: 'inkdividual',
     name: 'Inkdividual',
-    description: 'Myers-Briggs personality art generator',
+    description: 'Individual personality type art generator',
     fullDescription: 'A Myers Briggs style personality questioner linked to a prompt generator to produce unique digital art, also linked to printing services for unique personalized designs for phone cases, t shirts, cards, placemats, Colouring books etc.',
     features: ['Personality Assessment', 'AI Art Generation', 'Print Services', 'Custom Designs'],
     category: 'Generate art based on Myers Briggs style personality',
@@ -104,7 +104,7 @@ export const apps: AppData[] = [
   {
     id: 'lock-flute-3d',
     name: 'Lock, flute and 3d',
-    description: '3D printed security flute access control',
+    description: '3D print private secure access control flute, shareable physical digital device opening',
     fullDescription: 'Using a 3d printer, print a small flute encoding distinct microtones, to distribute (as a keychain or necklace) to unlock any capable digital device, secure sharable access control.',
     features: ['3D Printing', 'Microtone Encoding', 'Access Control', 'Secure Authentication'],
     category: 'Security flute',
@@ -113,7 +113,7 @@ export const apps: AppData[] = [
   {
     id: 'mind-scope',
     name: 'Mind Scope',
-    description: 'Rapid psychological profiling system',
+    description: 'Rapid psychological profiling system based on agency training',
     fullDescription: 'An app based on a system of rapid profiling, used by various three letter agencies to classify people based on body language, nonverbal signals everybody leaks that reveal everything about a person.',
     features: ['Body Language Analysis', 'Nonverbal Signals', 'Rapid Profiling', 'Behavioral Classification'],
     category: 'Utility/ entertainment',
@@ -122,7 +122,7 @@ export const apps: AppData[] = [
   {
     id: 'sicksense',
     name: 'Sick sense',
-    description: 'AI car sickness prediction system',
+    description: 'AI assisted car and travel motion sickness prediction system',
     fullDescription: 'Using your smartphones sensors and machine learning, get a heads up on when your kids going to puke, it might take a few goes to gather the evidence,then the app can work two ways, letting you know to drive more slowly or when your kids looking a little green it might be time to pull over.',
     features: ['Motion Sensing', 'Machine Learning', 'Predictive Alerts', 'Driving Assistance'],
     category: 'Ai car sickness',
@@ -131,7 +131,7 @@ export const apps: AppData[] = [
   {
     id: 'soldierify',
     name: 'Soldierify',
-    description: 'Historical warrior photo transformation',
+    description: 'Be a historical warrior by photo transformation, digital and printable art',
     fullDescription: 'Drop a photo and it puts your face on soldier selecting from historic warriors on parade, or in battle or after, you can use the image as digital art in its own right or send it to printify and get your likeness as a poster of yourself as let\'s say a roman legionary, or Mongol or Zulu or US marine or British redcoat, etc, a great gift for father\'s day.',
     features: ['Face Mapping', 'Historic Warriors', 'Print Services', 'Digital Art'],
     category: 'Entertainment/ art and decoration',
@@ -167,7 +167,7 @@ export const apps: AppData[] = [
   {
     id: 'archive-box-scope',
     name: 'ARchive box-scope',
-    description: 'AR-powered personal database and organizer',
+    description: 'AR powered AI enhanced personal database and organizer',
     fullDescription: 'Augmented reality interface driving a personal database, hold up your phone and ai recognises pre-registered closed containers to reveal and list their contents, as entered into the database or identified by object recognition to populate the database, has some sharing features for trusted sharing, but basically for when you forget where you put something, originally conceived like a x ray for boxes I forgot what was in as I rummaged for the lost thing.',
     features: ['AR Container Recognition', 'Database Management', 'Object Recognition', 'Inventory Tracking'],
     category: 'Utility/ personal database/ organizer',
