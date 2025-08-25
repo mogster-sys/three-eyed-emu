@@ -8,7 +8,8 @@ import { useCart } from '@/hooks/useCart'
 import { useAuth } from '@/hooks/useAuth'
 import { useCreatePurchase } from '@/hooks/usePurchases'
 import { useToast } from '@/hooks/use-toast'
-import { CreditCard, Lock } from 'lucide-react'
+import { CreditCard, Lock, Download } from 'lucide-react'
+import { downloadService } from '@/services/downloadService'
 
 interface CheckoutDialogProps {
   open: boolean
@@ -28,6 +29,8 @@ export const CheckoutDialog: React.FC<CheckoutDialogProps> = ({ open, onOpenChan
     cardName: '',
   })
   const [loading, setLoading] = useState(false)
+  const [downloadLinks, setDownloadLinks] = useState<{ appName: string; url: string }[]>([])
+  const [showDownloads, setShowDownloads] = useState(false)
 
   const totalPrice = getTotalPrice()
 
@@ -41,24 +44,67 @@ export const CheckoutDialog: React.FC<CheckoutDialogProps> = ({ open, onOpenChan
       // In a real implementation, you'd integrate with Stripe here
       // For now, we'll simulate the payment process
       
-      // Create purchases for each item
+      const downloads: { appName: string; url: string }[] = []
+      
+      // Create purchases and download links for each item
       for (const item of items) {
-        await createPurchase.mutateAsync({
+        // Create purchase record
+        const purchase = await createPurchase.mutateAsync({
           user_id: user.id,
           app_id: item.app.id,
           amount: item.app.price * item.quantity,
           status: 'completed',
           stripe_payment_id: `sim_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         })
+        
+        // Generate download link
+        const download = await downloadService.createDownloadLink(
+          user.id,
+          item.app.id,
+          purchase.id,
+          'android' // Default to Android, could be made dynamic
+        )
+        
+        if (download) {
+          const downloadPageUrl = downloadService.generateDownloadPageUrl(download.download_token)
+          downloads.push({
+            appName: item.app.name,
+            url: downloadPageUrl
+          })
+          
+          // Optionally send email with download link
+          if (user.email) {
+            await downloadService.sendDownloadEmail(
+              user.email,
+              downloadPageUrl,
+              item.app.name
+            )
+          }
+        }
       }
-
-      // Clear cart and close dialog
+      
+      // Show download links
+      if (downloads.length > 0) {
+        setDownloadLinks(downloads)
+        setShowDownloads(true)
+      }
+      
+      // Clear cart
       clearCart()
-      onOpenChange(false)
       
       toast({
         title: "Purchase Successful!",
-        description: `You've successfully purchased ${items.length} app(s) for $${totalPrice.toFixed(2)}.`,
+        description: `You've successfully purchased ${items.length} app(s). Check your email for download links.`,
+        action: downloads.length > 0 ? (
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setShowDownloads(true)}
+          >
+            <Download className="h-4 w-4 mr-2" />
+            Show Downloads
+          </Button>
+        ) : undefined
       })
       
       // Reset payment form
@@ -68,6 +114,11 @@ export const CheckoutDialog: React.FC<CheckoutDialogProps> = ({ open, onOpenChan
         cvv: '',
         cardName: '',
       })
+      
+      // Keep dialog open to show downloads, or close if no downloads
+      if (downloads.length === 0) {
+        onOpenChange(false)
+      }
       
     } catch (error) {
       toast({
@@ -91,24 +142,62 @@ export const CheckoutDialog: React.FC<CheckoutDialogProps> = ({ open, onOpenChan
         </DialogHeader>
         
         <div className="space-y-6">
-          {/* Order Summary */}
-          <div className="space-y-4">
-            <h3 className="font-semibold">Order Summary</h3>
-            {items.map((item) => (
-              <div key={item.app.id} className="flex justify-between text-sm">
-                <span>{item.app.name} × {item.quantity}</span>
-                <span>${(item.app.price * item.quantity).toFixed(2)}</span>
+          {showDownloads && downloadLinks.length > 0 ? (
+            /* Show download links after successful payment */
+            <div className="space-y-4">
+              <h3 className="font-semibold flex items-center gap-2">
+                <Download className="h-5 w-5 text-primary" />
+                Your Downloads
+              </h3>
+              <div className="space-y-3">
+                {downloadLinks.map((link, index) => (
+                  <div key={index} className="border rounded-lg p-3 bg-primary/5">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium">{link.appName}</span>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => window.open(link.url, '_blank')}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Download
+                      </Button>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-            <Separator />
-            <div className="flex justify-between font-semibold">
-              <span>Total</span>
-              <span>${totalPrice.toFixed(2)}</span>
+              <div className="text-sm text-muted-foreground">
+                <p>• Download links expire in 24 hours</p>
+                <p>• You can download each app up to 5 times</p>
+                <p>• Check your email for download links</p>
+              </div>
+              <Button
+                className="w-full"
+                onClick={() => onOpenChange(false)}
+              >
+                Done
+              </Button>
             </div>
-          </div>
-          
-          {/* Payment Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          ) : (
+            /* Show order summary and payment form */
+            <>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Order Summary</h3>
+                {items.map((item) => (
+                  <div key={item.app.id} className="flex justify-between text-sm">
+                    <span>{item.app.name} × {item.quantity}</span>
+                    <span>${(item.app.price * item.quantity).toFixed(2)}</span>
+                  </div>
+                ))}
+                <Separator />
+                <div className="flex justify-between font-semibold">
+                  <span>Total</span>
+                  <span>${totalPrice.toFixed(2)}</span>
+                </div>
+              </div>
+              
+              {/* Payment Form */}
+              <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="cardName">Cardholder Name</Label>
               <Input
@@ -164,6 +253,8 @@ export const CheckoutDialog: React.FC<CheckoutDialogProps> = ({ open, onOpenChan
               {loading ? 'Processing...' : `Pay $${totalPrice.toFixed(2)}`}
             </Button>
           </form>
+            </>
+          )}
         </div>
       </DialogContent>
     </Dialog>

@@ -93,7 +93,7 @@ export const MarketplacePortfolio = () => {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8 text-glow">App Marketplace</h2>
-          <p className="text-muted-foreground">No apps available at the moment.</p>
+          <p className="text-muted-foreground">Apps available soon.</p>
         </div>
       </section>
     );

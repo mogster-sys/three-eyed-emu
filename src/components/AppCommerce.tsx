@@ -5,7 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { AppData } from '@/data/apps';
-import { Check, Smartphone, Monitor, CreditCard } from 'lucide-react';
+import { Check, Smartphone, Monitor, CreditCard, Download } from 'lucide-react';
+import { CheckoutDialog } from '@/components/CheckoutDialog';
+import { useCart } from '@/hooks/useCart';
+import { useToast } from '@/hooks/use-toast';
 
 interface AppCommerceProps {
   app: AppData;
@@ -13,6 +16,9 @@ interface AppCommerceProps {
 
 export const AppCommerce = ({ app }: AppCommerceProps) => {
   const [selectedPlan, setSelectedPlan] = useState<'basic' | 'premium' | 'enterprise'>('basic');
+  const [showCheckout, setShowCheckout] = useState(false);
+  const { addItem } = useCart();
+  const { toast } = useToast();
 
   // Pricing tiers
   const pricingPlans = [
@@ -64,16 +70,39 @@ export const AppCommerce = ({ app }: AppCommerceProps) => {
   ];
 
   const handlePurchase = (planId: string) => {
-    // TODO: Integrate with Stripe or redirect to app store
-    console.log(`Purchase ${planId} plan for ${app.name}`);
+    // Find the selected plan details
+    const plan = pricingPlans.find(p => p.id === planId);
+    if (!plan) return;
+    
+    // Extract price as number (remove $ and convert)
+    const price = parseFloat(plan.price.replace('$', ''));
+    
+    // Add the app to cart with the selected plan price
+    const appWithPrice = { ...app, price };
+    addItem(appWithPrice);
+    
+    // Show success message
+    toast({
+      title: "Added to Cart",
+      description: `${app.name} (${plan.name} plan) has been added to your cart.`,
+    });
+    
+    // Open the checkout dialog
+    setShowCheckout(true);
   };
 
-  const handleAppStoreRedirect = (platform: 'ios' | 'android' | 'web') => {
-    // TODO: Replace with actual app store URLs
+  const handleAppStoreRedirect = (platform: 'ios' | 'android' | 'direct') => {
+    if (platform === 'direct') {
+      // For direct download, trigger the purchase flow
+      // This will use Stripe payment and then provide download link
+      handlePurchase(selectedPlan);
+      return;
+    }
+    
+    // For app stores, redirect to their pages
     const urls = {
       ios: `https://apps.apple.com/search?term=${encodeURIComponent(app.name)}`,
       android: `https://play.google.com/store/search?q=${encodeURIComponent(app.name)}`,
-      web: `https://app.example.com/${app.name.toLowerCase().replace(/\s+/g, '-')}`
     };
     
     window.open(urls[platform], '_blank');
@@ -116,12 +145,15 @@ export const AppCommerce = ({ app }: AppCommerceProps) => {
             </CardContent>
           </Card>
           
-          <Card className="cursor-pointer hover:bg-accent/50 transition-colors"
-                onClick={() => handleAppStoreRedirect('web')}>
+          <Card className="cursor-pointer hover:bg-accent/50 transition-colors border-primary/30 bg-primary/5"
+                onClick={() => handleAppStoreRedirect('direct')}>
             <CardContent className="p-4 text-center">
-              <Monitor className="h-8 w-8 mx-auto mb-2 text-primary" />
-              <h4 className="font-medium">Web App</h4>
-              <p className="text-sm text-muted-foreground">Any browser</p>
+              <Download className="h-8 w-8 mx-auto mb-2 text-primary animate-pulse" />
+              <h4 className="font-medium">Direct Download</h4>
+              <p className="text-sm text-muted-foreground">Purchase & Download</p>
+              <Badge className="mt-2 bg-primary/20 text-primary border-primary/30">
+                Secure Payment
+              </Badge>
             </CardContent>
           </Card>
         </div>
@@ -196,6 +228,12 @@ export const AppCommerce = ({ app }: AppCommerceProps) => {
           <li>• Secure payment processing via Stripe</li>
         </ul>
       </div>
+      
+      {/* Checkout Dialog */}
+      <CheckoutDialog 
+        open={showCheckout}
+        onOpenChange={setShowCheckout}
+      />
     </div>
   );
 };

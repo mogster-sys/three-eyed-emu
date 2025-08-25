@@ -76,9 +76,7 @@ const HeroSection = () => {
           ref={subtitleRef}
           className="text-xl text-muted-foreground leading-relaxed"
         >
-          Discover extraordinary apps and digital experiences.
-          <br />
-          Your gateway to innovation and creativity.
+          Chase entertainment and innovation, with life enhancing digital big stick apps
         </p>
         </div>
       </div>
