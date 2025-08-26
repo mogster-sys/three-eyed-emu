@@ -25,7 +25,7 @@ export const AppCommerce = ({ app }: AppCommerceProps) => {
     {
       id: 'basic' as const,
       name: 'Basic',
-      price: '$4.99',
+      price: 'TBA',
       period: 'one-time',
       description: 'Essential features for personal use',
       features: [
@@ -38,7 +38,7 @@ export const AppCommerce = ({ app }: AppCommerceProps) => {
     {
       id: 'premium' as const,
       name: 'Premium',
-      price: '$9.99',
+      price: 'TBA',
       period: 'monthly',
       description: 'Advanced features for power users',
       features: [
@@ -54,7 +54,7 @@ export const AppCommerce = ({ app }: AppCommerceProps) => {
     {
       id: 'enterprise' as const,
       name: 'Enterprise',
-      price: '$24.99',
+      price: 'TBA',
       period: 'monthly',
       description: 'Full-featured solution for teams',
       features: [
@@ -73,6 +73,15 @@ export const AppCommerce = ({ app }: AppCommerceProps) => {
     // Find the selected plan details
     const plan = pricingPlans.find(p => p.id === planId);
     if (!plan) return;
+    
+    // Handle TBA pricing
+    if (plan.price === 'TBA') {
+      toast({
+        title: "Pricing Coming Soon",
+        description: `Pricing for ${app.name} will be announced soon. Please check back later.`,
+      });
+      return;
+    }
     
     // Extract price as number (remove $ and convert)
     const price = parseFloat(plan.price.replace('$', ''));
