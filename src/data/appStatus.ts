@@ -5,16 +5,16 @@ export interface AppStatus {
 
 export const appStatusConfig: AppStatus = {
   // AI-powered apps that are "in training"
-  'birdemon': 'training',
   'sicksense': 'training', 
   'spark-spectrometer': 'training',
-  'mind-scope': 'training',
-  'dream-sync': 'training',
-  'soldierify': 'training',
-  'inkdividual': 'training',
-  'archive-box-scope': 'training',
   
   // Other apps that are "under construction"
+  'birdemon': 'construction',
+  'mind-scope': 'construction',
+  'dream-sync': 'construction',
+  'soldierify': 'construction',
+  'inkdividual': 'construction',
+  'archive-box-scope': 'construction',
   'ar-graffiti': 'construction',
   'decision-lens': 'construction',
   'doggles': 'construction',

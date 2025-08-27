@@ -18,6 +18,10 @@ const AppCard = ({ app }: AppCardProps) => {
   const [isSquareImage, setIsSquareImage] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [editableTitle, setEditableTitle] = useState(app.name);
+  const [editableDescription, setEditableDescription] = useState(app.fullDescription);
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [isEditingDescription, setIsEditingDescription] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
@@ -37,18 +41,11 @@ const AppCard = ({ app }: AppCardProps) => {
     setIsSquareImage(aspectRatio >= 0.8 && aspectRatio <= 1.2);
   };
 
-  const handleCardClick = () => {
-    if (isNotReady) {
-      setShowContactForm(true);
-    }
-  };
-
   return (
     <>
       <div
         ref={cardRef}
-        className="relative w-full h-64 glassmorphic rounded-xl overflow-hidden cursor-pointer glow-effect group"
-        onClick={handleCardClick}
+        className="relative w-full h-64 glassmorphic rounded-xl overflow-hidden glow-effect group"
       >
       <div className="flex h-full">
         {/* Left side - Image */}
@@ -81,18 +78,18 @@ const AppCard = ({ app }: AppCardProps) => {
         </div>
 
         {/* Right side - Content */}
-        <div className="w-1/2 p-6 flex flex-col justify-between">
-          <div>
+        <div className="w-1/2 p-6 flex flex-col">
+          <div className="flex-1 flex flex-col">
             <div className="mb-3">
               <h3 className="font-bold text-xl leading-tight">{app.name}</h3>
             </div>
             
-            <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+            <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
               {app.description}
             </p>
 
-            {/* Learn More Button */}
-            <div className="mb-4">
+            {/* Buttons Container - Centered */}
+            <div className="flex-1 flex flex-col justify-center gap-2">
               <Dialog onOpenChange={(open) => setDialogOpen(open)}>
                 <DialogTrigger asChild>
                   <Button 
@@ -106,14 +103,45 @@ const AppCard = ({ app }: AppCardProps) => {
                 </DialogTrigger>
                 <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto glassmorphic border-primary/20 glow-effect">
                   <DialogHeader className="border-b border-primary/20 pb-4 mb-6">
-                    <DialogTitle className="text-2xl font-bold text-glow">{app.name}</DialogTitle>
+                    <DialogTitle 
+                      className="text-2xl font-bold text-glow cursor-text transition-all"
+                      contentEditable={true}
+                      suppressContentEditableWarning={true}
+                      onFocus={() => setIsEditingTitle(true)}
+                      onBlur={(e) => {
+                        setIsEditingTitle(false);
+                        setEditableTitle(e.currentTarget.textContent || '');
+                      }}
+                      style={{
+                        outline: 'none',
+                        borderBottom: isEditingTitle ? '2px solid hsl(var(--primary) / 0.5)' : '2px solid transparent',
+                        paddingBottom: '2px'
+                      }}
+                    >
+                      {editableTitle}
+                    </DialogTitle>
                   </DialogHeader>
                   <div className="space-y-6">
                     <Badge variant="secondary" className="w-fit bg-primary/20 text-primary border-primary/30 glow-effect">
                       {app.category}
                     </Badge>
-                    <p className="text-muted-foreground leading-relaxed text-base">
-                      {app.fullDescription}
+                    <p 
+                      className="text-muted-foreground leading-relaxed text-base cursor-text transition-all"
+                      contentEditable={true}
+                      suppressContentEditableWarning={true}
+                      onFocus={() => setIsEditingDescription(true)}
+                      onBlur={(e) => {
+                        setIsEditingDescription(false);
+                        setEditableDescription(e.currentTarget.textContent || '');
+                      }}
+                      style={{
+                        outline: 'none',
+                        borderLeft: isEditingDescription ? '3px solid hsl(var(--primary) / 0.3)' : '3px solid transparent',
+                        paddingLeft: isEditingDescription ? '12px' : '0px',
+                        marginLeft: isEditingDescription ? '-12px' : '0px'
+                      }}
+                    >
+                      {editableDescription}
                     </p>
                     <div className="space-y-3 bg-card/50 p-4 rounded-lg border border-primary/10">
                       <h4 className="font-semibold text-primary text-glow">Features:</h4>
@@ -129,46 +157,58 @@ const AppCard = ({ app }: AppCardProps) => {
                   </div>
                 </DialogContent>
               </Dialog>
-            </div>
-          </div>
 
-          {/* Get App button */}
-          <div>
-            {isNotReady ? (
-              <Button 
-                size="sm" 
-                variant="outline"
-                className="w-full text-xs py-1.5 opacity-60"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowContactForm(true);
-                }}
-              >
-                {appStatus === 'training' ? 'In Training' : 'Under Construction'}
-              </Button>
-            ) : (
-              <Dialog onOpenChange={(open) => setDialogOpen(open)}>
-                <DialogTrigger asChild>
-                  <Button 
-                    size="sm" 
-                    className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Get App
-                  </Button>
-                </DialogTrigger>
+              {/* Get App button */}
+              {isNotReady ? (
+                <Button 
+                  size="sm" 
+                  className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowContactForm(true);
+                  }}
+                >
+                  Get App
+                </Button>
+              ) : (
+                <Dialog onOpenChange={(open) => setDialogOpen(open)}>
+                  <DialogTrigger asChild>
+                    <Button 
+                      size="sm" 
+                      className="w-full text-xs py-1.5 glow-effect transition-all duration-300"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Get App
+                    </Button>
+                  </DialogTrigger>
                 <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glassmorphic border-primary/20 glow-effect">
                   <DialogHeader className="border-b border-primary/20 pb-4 mb-6">
-                    <DialogTitle className="text-3xl font-bold text-glow bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-                      {app.name} - Get Started
+                    <DialogTitle 
+                      className="text-3xl font-bold text-glow bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent cursor-text transition-all"
+                      contentEditable={true}
+                      suppressContentEditableWarning={true}
+                      onFocus={() => setIsEditingTitle(true)}
+                      onBlur={(e) => {
+                        setIsEditingTitle(false);
+                        const text = e.currentTarget.textContent || '';
+                        setEditableTitle(text.replace(' - Get Started', ''));
+                      }}
+                      style={{
+                        outline: 'none',
+                        borderBottom: isEditingTitle ? '2px solid hsl(var(--primary) / 0.5)' : '2px solid transparent',
+                        paddingBottom: '2px'
+                      }}
+                    >
+                      {editableTitle} - Get Started
                     </DialogTitle>
                   </DialogHeader>
                   <div className="bg-card/30 rounded-lg p-1 border border-primary/10">
                     <AppCommerce app={app} />
                   </div>
                 </DialogContent>
-              </Dialog>
-            )}
+                </Dialog>
+              )}
+            </div>
           </div>
         </div>
       </div>

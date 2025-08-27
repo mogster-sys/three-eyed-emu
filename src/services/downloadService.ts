@@ -1,4 +1,5 @@
 import { supabase } from '@/integrations/supabase/client';
+import { downloadRateLimiter } from '@/utils/rateLimiter';
 
 // Using existing purchases table structure
 export interface Purchase {
@@ -143,8 +144,15 @@ class DownloadService {
   /**
    * Validate and process download
    */
-  async processDownload(token: string): Promise<string | null> {
+  async processDownload(token: string, userId?: string): Promise<string | null> {
     try {
+      const rateLimitKey = userId || `download_${token}`;
+      
+      if (!downloadRateLimiter.isAllowed(rateLimitKey)) {
+        console.error('Download rate limit exceeded');
+        throw new Error('Too many download attempts. Please try again later.');
+      }
+      
       // Check if download is valid
       const { data: isValid, error: validError } = await supabase
         .rpc('is_download_valid', { token });
@@ -174,7 +182,7 @@ class DownloadService {
   /**
    * Get user's available downloads
    */
-  async getUserDownloads(userId: string): Promise<AppDownload[]> {
+  async getUserDownloads(userId: string): Promise<any[]> {
     try {
       const { data, error } = await supabase
         .from('app_downloads')

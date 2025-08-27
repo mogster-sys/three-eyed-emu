@@ -169,10 +169,6 @@ const InteractiveEmu = () => {
         />
       </div>
       
-      {/* Click hint text */}
-      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground pointer-events-none opacity-70">
-        Click me!
-      </div>
 
       <style>{`
         @keyframes pulse {

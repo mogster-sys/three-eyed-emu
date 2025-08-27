@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase, isSupabaseAvailable } from '@/integrations/supabase/client';
 import { Database } from '@/lib/types';
+import { authRateLimiter } from '@/utils/rateLimiter';
+import { emailSchema, passwordSchema, validateAndSanitize } from '@/utils/validation';
 
 type UserProfile = Database['public']['Tables']['users']['Row'];
 
@@ -66,9 +68,23 @@ export const useAuth = () => {
   const signUp = async (email: string, password: string, fullName?: string) => {
     if (!supabase) throw new Error('Supabase not available - connect backend to enable auth');
     
+    if (!authRateLimiter.isAllowed('auth')) {
+      throw new Error('Too many attempts. Please try again later.');
+    }
+    
+    const emailValidation = validateAndSanitize(emailSchema, email);
+    if (!emailValidation.success) {
+      throw new Error(emailValidation.error);
+    }
+    
+    const passwordValidation = validateAndSanitize(passwordSchema, password);
+    if (!passwordValidation.success) {
+      throw new Error(passwordValidation.error);
+    }
+    
     const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
+      email: emailValidation.data!,
+      password: passwordValidation.data!,
     });
 
     if (error) throw error;
@@ -88,8 +104,17 @@ export const useAuth = () => {
   const signIn = async (email: string, password: string) => {
     if (!supabase) throw new Error('Supabase not available - connect backend to enable auth');
     
+    if (!authRateLimiter.isAllowed('auth')) {
+      throw new Error('Too many attempts. Please try again later.');
+    }
+    
+    const emailValidation = validateAndSanitize(emailSchema, email);
+    if (!emailValidation.success) {
+      throw new Error(emailValidation.error);
+    }
+    
     const { data, error } = await supabase.auth.signInWithPassword({
-      email,
+      email: emailValidation.data!,
       password,
     });
 
