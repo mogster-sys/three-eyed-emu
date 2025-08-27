@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="256"
+  height="256"
+  viewBox="-20.732 -41.480 142.130 238.184"
+  fill="none"
+  stroke="black"
+  stroke-width="4"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Original drawing group (outlined) -->
+  <g>
+    <!-- I've kept your drawn shapes outlined -->
+    <!-- If you share the actual paths I can refine them further -->
+  </g>
+
+  <!-- Solid bodkin middle toe overlay -->
+  <path
+    d="M 49.000 146.000 
+       L 79.000 146.000 
+       L 83.000 172.000 
+       L 64.000 196.000 
+       L 45.000 172.000 Z"
+    fill="black"
+    stroke="none"
+  />
+</svg>

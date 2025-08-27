@@ -30,13 +30,13 @@ export interface AppData {
 
 export const apps: AppData[] = [
   {
-    id: 'ar-graffiti',
-    name: 'Augmented Graffiti (AR graffiti)',
-    description: 'Geotagged graffiti, tag Augmented reality private messages',
-    fullDescription: 'Geotagged graffiti or messages can be left in the manner of a cold war spy dead drop or modern geocache, only retrievable and visible by another user of the app attending the same location the message was made, only unlockable through a secure augmented reality interface, only viewable at the site. Keep your messages private, tag the joint without getting arrested, if you don\'t mind looking daft pretending your phones a spray can. (still works just type on a keyboard.)',
-    features: ['Geotagged Messages', 'AR Interface', 'Location-Based', 'Private Messaging'],
-    category: 'Entertainment/ social media',
-    sourceImage: arGraffiti
+    id: 'archive-box-scope',
+    name: 'ARchive box-scope',
+    description: 'AR powered AI enhanced personal database and organizer',
+    fullDescription: 'Augmented reality interface driving a personal database, hold up your phone and ai recognises pre-registered closed containers to reveal and list their contents, as entered into the database or identified by object recognition to populate the database, has some sharing features for trusted sharing, but basically for when you forget where you put something, originally conceived like a x ray for boxes I forgot what was in as I rummaged for the lost thing.',
+    features: ['AR Container Recognition', 'Database Management', 'Object Recognition', 'Inventory Tracking'],
+    category: 'Utility/ personal database/ organizer',
+    sourceImage: archive
   },
   {
     id: 'birdemon',
@@ -85,7 +85,7 @@ export const apps: AppData[] = [
   },
   {
     id: 'heads-up',
-    name: 'Heads Up on the flipside',
+    name: 'Heads Up on the flip',
     description: 'Beautiful coin collection, virtual random toss',
     fullDescription: 'An elegant collection of historic coins from different eras and civilizations. Perfect for making decisions, settling debates, or simply enjoying beautifully animated coin tosses with authentic physics.',
     features: ['Historic Coins', 'Realistic Physics', 'Decision Making', 'Coin Collection'],
@@ -165,12 +165,12 @@ export const apps: AppData[] = [
     sourceImage: tappFlow
   },
   {
-    id: 'archive-box-scope',
-    name: 'ARchive box-scope',
-    description: 'AR powered AI enhanced personal database and organizer',
-    fullDescription: 'Augmented reality interface driving a personal database, hold up your phone and ai recognises pre-registered closed containers to reveal and list their contents, as entered into the database or identified by object recognition to populate the database, has some sharing features for trusted sharing, but basically for when you forget where you put something, originally conceived like a x ray for boxes I forgot what was in as I rummaged for the lost thing.',
-    features: ['AR Container Recognition', 'Database Management', 'Object Recognition', 'Inventory Tracking'],
-    category: 'Utility/ personal database/ organizer',
-    sourceImage: archive
+    id: 'ar-graffiti',
+    name: 'Augmented Graffiti (AR graffiti)',
+    description: 'Geotagged graffiti, tag Augmented reality private messages',
+    fullDescription: 'Geotagged graffiti or messages can be left in the manner of a cold war spy dead drop or modern geocache, only retrievable and visible by another user of the app attending the same location the message was made, only unlockable through a secure augmented reality interface, only viewable at the site. Keep your messages private, tag the joint without getting arrested, if you don\'t mind looking daft pretending your phones a spray can. (still works just type on a keyboard.)',
+    features: ['Geotagged Messages', 'AR Interface', 'Location-Based', 'Private Messaging'],
+    category: 'Entertainment/ social media',
+    sourceImage: arGraffiti
   }
 ];

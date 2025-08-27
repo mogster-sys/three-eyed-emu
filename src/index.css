@@ -140,4 +140,14 @@ Dark, modern, and elegant with glowing neon accents
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary) / 0.5);
   }
+
+  /* Gentle bounce animation for emu foot */
+  @keyframes gentle-bounce {
+    0%, 100% { 
+      transform: translateY(0px); 
+    }
+    50% { 
+      transform: translateY(-8px); 
+    }
+  }
 }

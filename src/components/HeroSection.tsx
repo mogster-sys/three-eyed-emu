@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { ArrowDown } from 'lucide-react';
 import InteractiveEmu from './InteractiveEmu';
 
 const HeroSection = () => {
@@ -83,9 +82,21 @@ const HeroSection = () => {
         </p>
         
         {/* Scroll indicator */}
-        <div className="flex flex-col items-start mt-12 gap-2">
+        <div className="flex flex-col items-start mt-8 gap-4 w-full relative">
           <span className="text-sm text-muted-foreground">Scroll to explore</span>
-          <ArrowDown className="w-6 h-6 animate-bounce text-primary" />
+          <img 
+            src="/emu-foot.svg" 
+            alt="Emu foot pointing down"
+            className="opacity-70"
+            style={{
+              animation: 'gentle-bounce 3s ease-in-out infinite',
+              objectFit: 'contain',
+              width: '500px',
+              height: '250px',
+              marginLeft: '-50px',
+              transform: 'translateX(50px)'
+            }}
+          />
         </div>
         </div>
       </div>
