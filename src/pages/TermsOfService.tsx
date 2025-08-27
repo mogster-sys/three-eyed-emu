@@ -76,7 +76,7 @@ const TermsOfService = () => {
             <p className="mb-4">
               If you have any questions regarding these Terms of Service, please contact us at:
             </p>
-            <p>Email: legal@threeeyedemu.com.au</p>
+            <p>Email: threeeyedemu@zohomail.com.au</p>
             <p>Website: threeeyedemu.com.au</p>
           </section>
         </div>

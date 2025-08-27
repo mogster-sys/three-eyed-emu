@@ -76,7 +76,7 @@ const PrivacyPolicy = () => {
             <p className="mb-4">
               If you have any questions about this Privacy Policy, please contact us at:
             </p>
-            <p>Email: privacy@threeeyedemu.com.au</p>
+            <p>Email: threeeyedemu@zohomail.com.au</p>
             <p>Website: threeeyedemu.com.au</p>
           </section>
         </div>

@@ -38,7 +38,7 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Support</h4>
             <ul className="space-y-2">
               <li>
-                <a href="mailto:support@threeeyedemu.com.au" className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                <a href="mailto:threeeyedemu@zohomail.com.au" className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
                   <Mail className="w-4 h-4" />
                   Contact Support
                 </a>

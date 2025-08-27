@@ -56,7 +56,7 @@ const RefundPolicy = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Contact Support</h3>
-                    <p className="text-muted-foreground">Email us at refunds@threeeyedemu.com.au with your order number</p>
+                    <p className="text-muted-foreground">Email us at threeeyedemu@zohomail.com.au with your order number</p>
                   </div>
                 </div>
                 
@@ -115,8 +115,7 @@ const RefundPolicy = () => {
                 If you have any questions about our refund policy or need assistance with a refund request, please contact us:
               </p>
               <div className="space-y-1">
-                <p>Email: refunds@threeeyedemu.com.au</p>
-                <p>Support: support@threeeyedemu.com.au</p>
+                <p>Email: threeeyedemu@zohomail.com.au</p>
               </div>
             </div>
           </section>
