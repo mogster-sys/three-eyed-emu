@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/hooks/useAuth';
 import { AuthDialog } from '@/components/AuthDialog';
 import { User, LogOut } from 'lucide-react';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,6 +83,9 @@ const Index = () => {
       
       {/* Marketplace Portfolio */}
       <MarketplacePortfolio />
+      
+      {/* Footer */}
+      <Footer />
       
       <AuthDialog open={authDialogOpen} onOpenChange={setAuthDialogOpen} />
     </div>
