@@ -63,7 +63,7 @@ const Footer = () => {
                 <span>Payments via Stripe</span>
               </div>
               <div className="text-sm text-muted-foreground">
-                ABN: [Your ABN Here]
+                ABN: 60 976 457 601
               </div>
             </div>
           </div>
