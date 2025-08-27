@@ -19,7 +19,7 @@ export const appStatusConfig: AppStatus = {
   'decision-lens': 'construction',
   'doggles': 'construction',
   'groove-boss': 'construction',
-  'heads-up': 'ready',  // Changed to ready for testing
+  'heads-up': 'construction',
   'lock-flute-3d': 'construction',
   'night-titanic': 'construction',
   'tapp-app': 'construction'
