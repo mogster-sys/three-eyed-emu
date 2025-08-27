@@ -29,7 +29,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="fixed top-6 right-6 z-50">
+    <div className="fixed top-20 right-6 z-50">
       <div className="relative">
         <Button
           onClick={() => setIsOpen(!isOpen)}

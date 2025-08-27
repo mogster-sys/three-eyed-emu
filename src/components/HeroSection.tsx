@@ -6,7 +6,7 @@ const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const [titleText] = useState('Three Eyed Emu');
-  const [subtitleText] = useState('Chase entertainment and innovation, with life enhancing big stick digital apps');
+  const [subtitleText] = useState('Chase innovation and entertainment, with life enhancing big stick digital apps');
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.5 });
