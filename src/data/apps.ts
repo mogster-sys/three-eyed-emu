@@ -16,6 +16,10 @@ import grooveBoss from '@/assets/apps/grooveboss.png';
 import sixMinuteXray from '@/assets/apps/six_minute_xray.png';
 import soldierify from '@/assets/apps/soldierify.png';
 import tappFlow from '@/assets/apps/tapp-flow.png';
+import tidyMind from '@/assets/apps/TidyMind.png';
+import purrTrack9 from '@/assets/apps/PurrTrack_9.png';
+import mindHause from '@/assets/apps/FirstPersonOrganizer.png';
+import voiceFocus from '@/assets/apps/YouTubeDeannoyingizer.png';
 
 export interface AppData {
   id: string;
@@ -172,5 +176,41 @@ export const apps: AppData[] = [
     features: ['Geotagged Messages', 'AR Interface', 'Location-Based', 'Private Messaging'],
     category: 'Entertainment/ social media',
     sourceImage: arGraffiti
+  },
+  {
+    id: 'tidymind',
+    name: 'TidyMind',
+    description: 'ADHD-friendly decluttering companion with AI coaching',
+    fullDescription: 'Point your phone at the chaos and get judgment-free guidance to reclaim your space. Our AI coach helps you decide what stays, what goes, and where things belong, with coaching styles from gentle encouragement to tough love tailored to how your ADHD brain actually works.',
+    features: ['Smart Object Recognition', 'Personalized ADHD Coach', 'Location Suggestion System', 'Visual Time Management'],
+    category: 'ADHD Productivity / Organization',
+    sourceImage: tidyMind
+  },
+  {
+    id: 'purrtrack-9',
+    name: 'PurrTrack 9',
+    description: 'AI-powered smart collar protecting native wildlife',
+    fullDescription: 'Cats kill 1.4 billion native animals yearly in Australia, and bells don\'t work. PurrTrack 9 uses accelerometers and audio sensors to detect stalking behavior in real-time, triggering deterrents (sound/vibration/light) and alerting your phone when your cat hunts. Prevention over punishment—keep native birds alive while your cat stays safe.',
+    features: ['Real-time Stalking Detection', 'Smart Deterrent System', 'GPS Wildlife Tracking', 'Smart Home Integration'],
+    category: 'Pet Tech / Wildlife Conservation',
+    sourceImage: purrTrack9
+  },
+  {
+    id: 'mindhaus',
+    name: 'MindHause',
+    description: 'Your world becomes your memory palace',
+    fullDescription: 'Turn your real surroundings into an interactive memory palace for focus and productivity. Tasks, ideas, and reminders appear as objects inside beautifully rendered rooms mapped to real-world locations from Google Earth. Toggle instantly between immersive first-person world and sleek list view.',
+    features: ['Geo-Spatial Memory Rooms', 'Instant Classic Mode Toggle', 'Behavioral Flow System', 'Adaptive Aesthetic Themes'],
+    category: 'Spatial Productivity / AR Organizer',
+    sourceImage: mindHause
+  },
+  {
+    id: 'voicefocus-youtube',
+    name: 'VoiceFocus for YouTube',
+    description: 'Replace YouTube audio with your preferred voice for better focus',
+    fullDescription: 'Replace distracting YouTube audio with a clear synthetic voice or your own cloned voice. Perfect for educational content with speech patterns, background music, or vocal styles that distract from learning. Works entirely in your browser using YouTube\'s native captions—100% private, on-device processing with no subscriptions.',
+    features: ['Your Voice or Synthetic', '100% Private On-Device', 'No Ongoing Costs', 'Enhanced Learning Focus'],
+    category: 'Productivity / Accessibility',
+    sourceImage: voiceFocus
   }
 ];

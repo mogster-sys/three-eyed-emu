@@ -1,13 +1,16 @@
 // App status configuration
 export interface AppStatus {
-  [key: string]: 'ready' | 'training' | 'construction';
+  [key: string]: 'ready' | 'training' | 'construction' | 'hardware-construction';
 }
 
 export const appStatusConfig: AppStatus = {
   // AI-powered apps that are "in training"
-  'sicksense': 'training', 
+  'sicksense': 'training',
   'spark-spectrometer': 'training',
-  
+
+  // Hardware products under construction
+  'purrtrack-9': 'hardware-construction',
+
   // Other apps that are "under construction"
   'birdemon': 'construction',
   'mind-scope': 'construction',
@@ -22,9 +25,12 @@ export const appStatusConfig: AppStatus = {
   'heads-up': 'construction',
   'lock-flute-3d': 'construction',
   'night-titanic': 'construction',
-  'tapp-app': 'construction'
+  'tapp-app': 'construction',
+  'tidymind': 'construction',
+  'mindhaus': 'construction',
+  'voicefocus-youtube': 'construction'
 };
 
-export const getAppStatus = (appId: string): 'ready' | 'training' | 'construction' => {
+export const getAppStatus = (appId: string): 'ready' | 'training' | 'construction' | 'hardware-construction' => {
   return appStatusConfig[appId] || 'ready';
 };
