@@ -190,8 +190,8 @@ export const apps: AppData[] = [
     id: 'purrtrack-9',
     name: 'PurrTrack 9',
     description: 'AI-powered smart collar protecting native wildlife',
-    fullDescription: 'Cats kill 1.4 billion native animals yearly in Australia, and bells don\'t work. PurrTrack 9 uses accelerometers and audio sensors to detect stalking behavior in real-time, triggering deterrents (sound/vibration/light) and alerting your phone when your cat hunts. Prevention over punishment—keep native birds alive while your cat stays safe.',
-    features: ['Real-time Stalking Detection', 'Smart Deterrent System', 'GPS Wildlife Tracking', 'Smart Home Integration'],
+    fullDescription: 'Cats kill 1.4 billion native animals yearly in Australia, and bells don\'t always work. PurrTrack 9 uses accelerometers and sensors to detect stalking behavior in real-time, triggering deterrents (sound/vibration/light) and alerting your phone when your cat hunts. Prevention over punishment—keep native birds alive while your cat stays safe.',
+    features: ['Real-time Stalking Detection', 'Smart Deterrent System', 'Learn about the secret life of your cat', 'Smart Home Integration'],
     category: 'Pet Tech / Wildlife Conservation',
     sourceImage: purrTrack9
   },
@@ -199,7 +199,7 @@ export const apps: AppData[] = [
     id: 'mindhaus',
     name: 'MindHause',
     description: 'Your world becomes your memory palace',
-    fullDescription: 'Turn your real surroundings into an interactive memory palace for focus and productivity. Tasks, ideas, and reminders appear as objects inside beautifully rendered rooms mapped to real-world locations from Google Earth. Toggle instantly between immersive first-person world and sleek list view.',
+    fullDescription: 'An interactive first person organizer, position your tasks in a virtual space that is your own house or palace or castle to leverage spatial memory for task organization. Tasks, ideas, and reminders appear as objects inside beautifully rendered rooms, with appointments mapped to real-world locations, open a door to see where you\'re going to be tomorrow, images from Google Earth. Toggle instantly between immersive first-person world and sleek list view.',
     features: ['Geo-Spatial Memory Rooms', 'Instant Classic Mode Toggle', 'Behavioral Flow System', 'Adaptive Aesthetic Themes'],
     category: 'Spatial Productivity / AR Organizer',
     sourceImage: mindHause
@@ -208,8 +208,8 @@ export const apps: AppData[] = [
     id: 'voicefocus-youtube',
     name: 'VoiceFocus for YouTube',
     description: 'Replace YouTube audio with your preferred voice for better focus',
-    fullDescription: 'Replace distracting YouTube audio with a clear synthetic voice or your own cloned voice. Perfect for educational content with speech patterns, background music, or vocal styles that distract from learning. Works entirely in your browser using YouTube\'s native captions—100% private, on-device processing with no subscriptions.',
-    features: ['Your Voice or Synthetic', '100% Private On-Device', 'No Ongoing Costs', 'Enhanced Learning Focus'],
+    fullDescription: 'Replace distracting YouTube audio with a more tolerable voice of your choosing or your own cloned voice. Perfect for educational content with speech patterns, background music, or vocal styles that distract from learning. Works entirely in your browser using YouTube\'s native captions—100% private, on-device processing with no subscriptions.',
+    features: ['Your Voice or a voice of your choosing', '100% Private On-Device', 'No Ongoing Costs', 'Enhanced Learning Focus'],
     category: 'Productivity / Accessibility',
     sourceImage: voiceFocus
   }
