@@ -13,7 +13,7 @@ export const appStatusConfig: AppStatus = {
 
   // Other apps that are "under construction"
   'birdemon': 'construction',
-  'mind-scope': 'construction',
+  // 'mind-scope': 'construction', // temporarily removed
   'dream-sync': 'construction',
   'soldierify': 'construction',
   'inkdividual': 'construction',

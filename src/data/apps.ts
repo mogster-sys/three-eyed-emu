@@ -13,7 +13,7 @@ import sparkTester from '@/assets/apps/SparkTester.png';
 import titanic from '@/assets/apps/Titanic.png';
 import dreamJournal from '@/assets/apps/dreamjournal.png';
 import grooveBoss from '@/assets/apps/grooveboss.png';
-import sixMinuteXray from '@/assets/apps/six_minute_xray.png';
+// import sixMinuteXray from '@/assets/apps/six_minute_xray.png'; // Mind Scope image - kept locally
 import soldierify from '@/assets/apps/soldierify.png';
 import tappFlow from '@/assets/apps/tapp-flow.png';
 import tidyMind from '@/assets/apps/TidyMind.png';
@@ -53,7 +53,7 @@ export const apps: AppData[] = [
   },
   {
     id: 'decision-lens',
-    name: 'Decision lens',
+    name: 'DecisionScope',
     description: 'Systematic decision making support system',
     fullDescription: 'An app to systematically helps make decisions based on a Eisenhauer matrix, and NASAs TLDX system, assessing a tasks mental demand, temporal demand, performance, effort and frustration, and swot analysis, with a coin toss as a last resort.',
     features: ['Eisenhauer Matrix', 'NASA TLDX System', 'SWOT Analysis', 'Decision Trees'],
@@ -62,7 +62,7 @@ export const apps: AppData[] = [
   },
   {
     id: 'doggles',
-    name: 'Doggles',
+    name: 'MyDoggles',
     description: 'See the world through your dogs eyes, breed specific k9 emulator',
     fullDescription: 'See the world through the eyes of your K9 companion, with breed specific features such as visual field, not all dogs can see the TV, or the red tennis ball, find out if your dog\'s behaviours could be breed specific differences in vision.',
     features: ['Breed-Specific Vision', 'Visual Field Simulation', 'Color Perception', 'Behavior Analysis'],
@@ -114,15 +114,16 @@ export const apps: AppData[] = [
     category: 'Security flute',
     sourceImage: lockFlute3d
   },
-  {
-    id: 'mind-scope',
-    name: 'Mind Scope',
-    description: 'Rapid psychological profiling system based on agency training',
-    fullDescription: 'An app based on a system of rapid profiling, used by various three letter agencies to classify people based on body language, nonverbal signals everybody leaks that reveal everything about a person.',
-    features: ['Body Language Analysis', 'Nonverbal Signals', 'Rapid Profiling', 'Behavioral Classification'],
-    category: 'Utility/ entertainment',
-    sourceImage: sixMinuteXray
-  },
+  // Mind Scope - temporarily removed from website, kept in local storage
+  // {
+  //   id: 'mind-scope',
+  //   name: 'Mind Scope',
+  //   description: 'Rapid psychological profiling system based on agency training',
+  //   fullDescription: 'An app based on a system of rapid profiling, used by various three letter agencies to classify people based on body language, nonverbal signals everybody leaks that reveal everything about a person.',
+  //   features: ['Body Language Analysis', 'Nonverbal Signals', 'Rapid Profiling', 'Behavioral Classification'],
+  //   category: 'Utility/ entertainment',
+  //   sourceImage: sixMinuteXray
+  // },
   {
     id: 'sicksense',
     name: 'Sick sense',
