@@ -13,9 +13,9 @@ export const appStatusConfig: AppStatus = {
 
   // Other apps that are "under construction"
   'birdemon': 'construction',
-  // 'mind-scope': 'construction', // temporarily removed
+  'mind-scope': 'construction',
   'dream-sync': 'construction',
-  'soldierify': 'construction',
+  // 'soldierify': 'ready', // Site is live at soldierify.net
   'inkdividual': 'construction',
   'archive-box-scope': 'construction',
   'ar-graffiti': 'construction',
@@ -28,7 +28,10 @@ export const appStatusConfig: AppStatus = {
   'tapp-app': 'construction',
   'tidymind': 'construction',
   'mindhaus': 'construction',
-  'voicefocus-youtube': 'construction'
+  'voicefocus-youtube': 'construction',
+  'affect-atlas': 'construction',
+  'kitty-purrception-ar': 'construction',
+  'canny-recollection': 'construction'
 };
 
 export const getAppStatus = (appId: string): 'ready' | 'training' | 'construction' | 'hardware-construction' => {

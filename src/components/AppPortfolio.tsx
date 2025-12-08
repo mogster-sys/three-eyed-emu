@@ -68,11 +68,11 @@ const AppPortfolio = () => {
   return (
     <section className="min-h-screen py-20 px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 
+        <h2
           ref={titleRef}
           className="text-5xl font-bold text-center mb-16 text-glow"
         >
-          App Portfolio
+          App & Site Portfolio
         </h2>
         
         <div 

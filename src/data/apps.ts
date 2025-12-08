@@ -13,13 +13,16 @@ import sparkTester from '@/assets/apps/SparkTester.png';
 import titanic from '@/assets/apps/Titanic.png';
 import dreamJournal from '@/assets/apps/dreamjournal.png';
 import grooveBoss from '@/assets/apps/grooveboss.png';
-// import sixMinuteXray from '@/assets/apps/six_minute_xray.png'; // Mind Scope image - kept locally
+import sixMinuteXray from '@/assets/apps/six_minute_xray.png';
 import soldierify from '@/assets/apps/soldierify.png';
 import tappFlow from '@/assets/apps/tapp-flow.png';
 import tidyMind from '@/assets/apps/TidyMind.png';
 import purrTrack9 from '@/assets/apps/PurrTrack_9.png';
 import mindHause from '@/assets/apps/FirstPersonOrganizer.png';
 import voiceFocus from '@/assets/apps/YouTubeDeannoyingizer.png';
+import affectAtlas from '@/assets/apps/AffectAtlas.png';
+import kittyPurrceptionAR from '@/assets/apps/KittyPurrceptionAR.png';
+import cannyRecollection from '@/assets/apps/CannyRecollection.png';
 
 export interface AppData {
   id: string;
@@ -30,6 +33,7 @@ export interface AppData {
   category: string;
   sourceImage: string; // The full poster/illustration
   icon?: string; // Generated unified icon (will be created)
+  website?: string; // External website URL for the app
 }
 
 export const apps: AppData[] = [
@@ -49,7 +53,8 @@ export const apps: AppData[] = [
     fullDescription: 'Discover and identify Australia\'s incredible bird diversity with detailed descriptions, field guide plates, ai enhanced visual and song identification features, with a twist, a built-in Pokémon style game, collect conservation points by sharing geotagged, undisturbed sightings of birds in urban areas.',
     features: ['Bird Identification', 'Field Guide', 'AI Recognition', 'Conservation Game'],
     category: 'Utility/ game/ reference and identification manual',
-    sourceImage: birdemon
+    sourceImage: birdemon,
+    website: 'https://birdemon.com'
   },
   {
     id: 'decision-lens',
@@ -114,16 +119,15 @@ export const apps: AppData[] = [
     category: 'Security flute',
     sourceImage: lockFlute3d
   },
-  // Mind Scope - temporarily removed from website, kept in local storage
-  // {
-  //   id: 'mind-scope',
-  //   name: 'Mind Scope',
-  //   description: 'Rapid psychological profiling system based on agency training',
-  //   fullDescription: 'An app based on a system of rapid profiling, used by various three letter agencies to classify people based on body language, nonverbal signals everybody leaks that reveal everything about a person.',
-  //   features: ['Body Language Analysis', 'Nonverbal Signals', 'Rapid Profiling', 'Behavioral Classification'],
-  //   category: 'Utility/ entertainment',
-  //   sourceImage: sixMinuteXray
-  // },
+  {
+    id: 'mind-scope',
+    name: 'Mind Scope',
+    description: 'Rapid psychological profiling system based on agency training',
+    fullDescription: 'An app based on a system of rapid profiling, used by various three letter agencies to classify people based on body language, nonverbal signals everybody leaks that reveal everything about a person. Only available on request to businesses with privacy and ethics policies.',
+    features: ['Body Language Analysis', 'Nonverbal Signals', 'Rapid Profiling', 'Behavioral Classification'],
+    category: 'Utility / Business',
+    sourceImage: sixMinuteXray
+  },
   {
     id: 'sicksense',
     name: 'Sick sense',
@@ -140,7 +144,8 @@ export const apps: AppData[] = [
     fullDescription: 'Drop a photo and it puts your face on soldier selecting from historic warriors on parade, or in battle or after, you can use the image as digital art in its own right or send it to printify and get your likeness as a poster of yourself as let\'s say a roman legionary, or Mongol or Zulu or US marine or British redcoat, etc, a great gift for father\'s day.',
     features: ['Face Mapping', 'Historic Warriors', 'Print Services', 'Digital Art'],
     category: 'Entertainment/ art and decoration',
-    sourceImage: soldierify
+    sourceImage: soldierify,
+    website: 'https://soldierify.net'
   },
   {
     id: 'spark-spectrometer',
@@ -213,5 +218,33 @@ export const apps: AppData[] = [
     features: ['Your Voice or a voice of your choosing', '100% Private On-Device', 'No Ongoing Costs', 'Enhanced Learning Focus'],
     category: 'Productivity / Accessibility',
     sourceImage: voiceFocus
+  },
+  {
+    id: 'affect-atlas',
+    name: 'AffectAtlas',
+    description: 'Turn emotions into practical design choices with an intuitive emotion wheel',
+    fullDescription: 'Turn emotions into practical design choices using an intuitive emotion wheel that guides color, type, layout, and motion. Dial the intensity up or down and export clean, ready-to-use tokens for Figma, CSS, Tailwind, and design systems. Combine emotions to explore fresh visual directions and create interfaces with a clear, intentional tone. See your components update live, complete with accessibility checks and consistent style-guide output.',
+    features: ['Emotion-to-Design Mapping', 'Design Token Export', 'Live Component Preview', 'Accessibility Checks'],
+    category: 'Design Tools / Cross-platform',
+    sourceImage: affectAtlas
+  },
+  {
+    id: 'kitty-purrception-ar',
+    name: 'Kitty-purrception AR',
+    description: 'Experience the latest science of feline vision through augmented reality',
+    fullDescription: 'Explore breakthrough low-light perception where pitch-black rooms become fully navigable, replicating findings showing cats need only a fraction of the light humans require. Activate a persistent ultraviolet overlay reflecting the latest research on feline UV sensitivity, making fabrics, skin tones, and insect trails explode into brilliant blues and glowing neon tracks. Experience newly understood feline attention mechanics as the AR view mutes static elements and hyper-enhances moving targets. See human movement the way a cat truly does — slowed, exaggerated, and easier to track — based on evidence of cats processing motion at roughly twice the human flicker-fusion rate.',
+    features: ['Breakthrough Low-Light Perception', 'Fluorescent UV Reveal', 'Predator Mode Dynamic Focus', 'Slow-Motion Processing'],
+    category: 'AR / Entertainment / Free',
+    sourceImage: kittyPurrceptionAR
+  },
+  {
+    id: 'canny-recollection',
+    name: 'Canny Recollection',
+    description: 'Ambient learning posters and placemats that turn everyday spaces into quiet teachers',
+    fullDescription: 'Your gateway to printable learning products. Generate posters, placemats, and Kindle books that turn everyday spaces into quiet teachers. Our products transform breakfast tables, desks and bedrooms into "always-on" memory aids, so facts sink in slowly and painlessly just by being in view. Build real knowledge without extra screen time — these are calm, physical artefacts that gently repeat key information until it sticks. Curated "just good to know" content from science and maps to critical thinking and safety rules, focusing on durable, foundational knowledge that pays off for a lifetime.',
+    features: ['Placemats, Kindle Books & Posters', 'Screen-Free Education', 'Ambient Learning Products', 'Curated Knowledge Content'],
+    category: 'Education / Physical Products',
+    sourceImage: cannyRecollection,
+    website: 'https://cannyrecollection.com'
   }
 ];
