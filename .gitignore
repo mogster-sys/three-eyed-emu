@@ -25,3 +25,14 @@ dist-ssr
 .env
 .env.local
 .env.production
+
+# Playwright MCP test artifacts
+.playwright-mcp/
+
+# Local screenshot captures at root
+/*-learn-more.png
+/site-full-page.png
+/pirateify-click-result.png
+
+# Asset backups (kept locally, not in repo)
+src/assets/apps/backup/
