@@ -6,7 +6,7 @@ const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const [titleText] = useState('Three Eyed Emu');
-  const [subtitleText] = useState('Chase innovation and entertainment, with life enhancing big stick digital apps');
+  const [subtitleText] = useState('Chase innovation, entertainment or life enhancement with a big stick, digital apps');
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.5 });
@@ -45,7 +45,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-8 relative">
+    <div className="min-h-[75vh] flex items-center justify-center px-8 relative">
       {/* Background gradient effect */}
       <div 
         className="absolute inset-0 opacity-30"
@@ -59,9 +59,9 @@ const HeroSection = () => {
         <div className="flex-shrink-0">
           <InteractiveEmu />
         </div>
-        
+
         <div className="text-left flex-1">
-        <h1 
+        <h1
           ref={titleRef}
           className="text-7xl font-black mb-6 text-glow transition-all"
           style={{
@@ -73,28 +73,26 @@ const HeroSection = () => {
         >
           {titleText}
         </h1>
-        
-        <p 
+
+        <p
           ref={subtitleRef}
           className="text-xl text-muted-foreground leading-relaxed transition-all"
         >
           {subtitleText}
         </p>
-        
-        {/* Scroll indicator */}
-        <div className="flex flex-col items-start mt-8 gap-4 w-full relative">
+
+        {/* Scroll indicator - emu foot */}
+        <div className="flex flex-col items-center mt-10 gap-1 w-full">
           <span className="text-sm text-muted-foreground">Scroll to explore</span>
-          <img 
-            src="/emu-foot.svg" 
+          <img
+            src="/emu-foot.svg"
             alt="Emu foot pointing down"
             className="opacity-70"
             style={{
               animation: 'gentle-bounce 3s ease-in-out infinite',
               objectFit: 'contain',
-              width: '500px',
-              height: '250px',
-              marginLeft: '-50px',
-              transform: 'translateX(50px)'
+              width: '120px',
+              height: '95px'
             }}
           />
         </div>

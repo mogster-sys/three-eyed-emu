@@ -1,28 +1,80 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width="256"
-  height="256"
-  viewBox="-20.732 -41.480 142.130 238.184"
+  height="200"
+  viewBox="0 0 256 200"
   fill="none"
-  stroke="black"
-  stroke-width="4"
-  stroke-linecap="round"
-  stroke-linejoin="round"
 >
-  <!-- Original drawing group (outlined) -->
-  <g>
-    <!-- I've kept your drawn shapes outlined -->
-    <!-- If you share the actual paths I can refine them further -->
-  </g>
+  <!-- Emu foot - just the foot pad and three toes -->
 
-  <!-- Solid bodkin middle toe overlay -->
+  <!-- Foot pad / palm -->
+  <ellipse cx="128" cy="45" rx="32" ry="22" fill="white" opacity="0.85" />
+
+  <!-- Left toe -->
   <path
-    d="M 49.000 146.000 
-       L 79.000 146.000 
-       L 83.000 172.000 
-       L 64.000 196.000 
-       L 45.000 172.000 Z"
-    fill="black"
-    stroke="none"
+    d="M 100 40
+       C 95 50, 72 80, 62 100
+       C 55 113, 50 123, 52 127
+       C 54 133, 60 135, 66 131
+       C 72 127, 85 105, 95 85
+       C 100 75, 108 60, 110 53"
+    stroke="white"
+    stroke-width="14"
+    stroke-linecap="round"
+    fill="none"
+    opacity="0.85"
   />
+  <!-- Left claw -->
+  <path
+    d="M 52 127 C 46 135, 40 145, 42 149 C 44 153, 50 151, 54 145 C 58 139, 56 133, 52 127 Z"
+    fill="white"
+    opacity="0.9"
+  />
+
+  <!-- Middle toe (longest, pointing straight down) -->
+  <path
+    d="M 122 63
+       C 122 75, 120 95, 120 115
+       C 120 135, 122 153, 126 165
+       C 128 171, 130 171, 132 165
+       C 136 153, 138 135, 138 115
+       C 138 95, 136 75, 134 63"
+    stroke="white"
+    stroke-width="14"
+    stroke-linecap="round"
+    fill="none"
+    opacity="0.85"
+  />
+  <!-- Middle claw -->
+  <path
+    d="M 126 165 C 124 173, 122 183, 126 187 C 130 189, 134 185, 134 179 C 134 173, 132 169, 132 165 Z"
+    fill="white"
+    opacity="0.9"
+  />
+
+  <!-- Right toe -->
+  <path
+    d="M 156 40
+       C 161 50, 184 80, 194 100
+       C 201 113, 206 123, 204 127
+       C 202 133, 196 135, 190 131
+       C 184 127, 171 105, 161 85
+       C 156 75, 148 60, 146 53"
+    stroke="white"
+    stroke-width="14"
+    stroke-linecap="round"
+    fill="none"
+    opacity="0.85"
+  />
+  <!-- Right claw -->
+  <path
+    d="M 204 127 C 210 135, 216 145, 214 149 C 212 153, 206 151, 202 145 C 198 139, 200 133, 204 127 Z"
+    fill="white"
+    opacity="0.9"
+  />
+
+  <!-- Toe pad bumps -->
+  <ellipse cx="104" cy="43" rx="8" ry="6" fill="white" opacity="0.6" />
+  <ellipse cx="128" cy="65" rx="7" ry="5" fill="white" opacity="0.6" />
+  <ellipse cx="152" cy="43" rx="8" ry="6" fill="white" opacity="0.6" />
 </svg>

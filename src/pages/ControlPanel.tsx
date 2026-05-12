@@ -16,7 +16,7 @@ const ControlPanel = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const updateAppStatus = (appId: string, status: 'ready' | 'training' | 'construction') => {
+  const updateAppStatus = (appId: string, status: 'ready' | 'training' | 'construction' | 'diy-project') => {
     setStatusConfig(prev => ({
       ...prev,
       [appId]: status
@@ -141,7 +141,7 @@ const ControlPanel = () => {
                     <AppStatusBadge status={statusConfig[app.id] || 'ready'} />
                     <Select
                       value={statusConfig[app.id] || 'ready'}
-                      onValueChange={(value: 'ready' | 'training' | 'construction') => 
+                      onValueChange={(value: 'ready' | 'training' | 'construction' | 'diy-project') =>
                         updateAppStatus(app.id, value)
                       }
                     >
@@ -152,6 +152,7 @@ const ControlPanel = () => {
                         <SelectItem value="ready">Ready</SelectItem>
                         <SelectItem value="training">In Training</SelectItem>
                         <SelectItem value="construction">Under Construction</SelectItem>
+                        <SelectItem value="diy-project">DIY Project</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

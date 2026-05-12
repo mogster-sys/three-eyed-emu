@@ -1,8 +1,8 @@
 import { Badge } from '@/components/ui/badge';
-import { Brain, Construction, Wrench } from 'lucide-react';
+import { Brain, Construction, Wrench, Hammer } from 'lucide-react';
 
 interface AppStatusBadgeProps {
-  status: 'ready' | 'training' | 'construction' | 'hardware-construction';
+  status: 'ready' | 'training' | 'construction' | 'hardware-construction' | 'diy-project';
   className?: string;
 }
 
@@ -24,6 +24,11 @@ export const AppStatusBadge = ({ status, className = '' }: AppStatusBadgeProps) 
       label: 'Hardware Under Construction',
       icon: Wrench,
       className: 'bg-blue-500/20 text-blue-600 border-blue-500/30 dark:text-blue-400'
+    },
+    'diy-project': {
+      label: 'DIY Project',
+      icon: Hammer,
+      className: 'bg-emerald-500/20 text-emerald-600 border-emerald-500/30 dark:text-emerald-400'
     }
   };
 

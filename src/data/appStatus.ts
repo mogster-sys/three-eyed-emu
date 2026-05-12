@@ -1,6 +1,6 @@
 // App status configuration
 export interface AppStatus {
-  [key: string]: 'ready' | 'training' | 'construction' | 'hardware-construction';
+  [key: string]: 'ready' | 'training' | 'construction' | 'hardware-construction' | 'diy-project';
 }
 
 export const appStatusConfig: AppStatus = {
@@ -16,24 +16,27 @@ export const appStatusConfig: AppStatus = {
   'mind-scope': 'construction',
   'dream-sync': 'construction',
   // 'soldierify': 'ready', // Site is live at soldierify.net
-  'inkdividual': 'construction',
   'archive-box-scope': 'construction',
   'ar-graffiti': 'construction',
   'decision-lens': 'construction',
   'doggles': 'construction',
   'groove-boss': 'construction',
-  'heads-up': 'construction',
-  'lock-flute-3d': 'construction',
+  // 'heads-up': 'ready', // Live on Google Play + flippinheadsup.com
+  'lock-flute-3d': 'diy-project',
+  'pirateify': 'construction',
+  'mythify': 'construction',
+  'knightify': 'construction',
   'night-titanic': 'construction',
   'tapp-app': 'construction',
   'tidymind': 'construction',
   'mindhaus': 'construction',
   'voicefocus-youtube': 'construction',
-  'affect-atlas': 'construction',
-  'kitty-purrception-ar': 'construction',
-  'canny-recollection': 'construction'
+  // 'affect-atlas': live at affectatlas.com
+  // 'kitty-purrception-ar': live at purrtechnine.com
+  'canny-recollection': 'construction',
+  'threadgauge': 'training'
 };
 
-export const getAppStatus = (appId: string): 'ready' | 'training' | 'construction' | 'hardware-construction' => {
+export const getAppStatus = (appId: string): 'ready' | 'training' | 'construction' | 'hardware-construction' | 'diy-project' => {
   return appStatusConfig[appId] || 'ready';
 };

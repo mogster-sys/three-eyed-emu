@@ -66,7 +66,7 @@ const AppPortfolio = () => {
   }, []);
 
   return (
-    <section className="min-h-screen py-20 px-8">
+    <section className="min-h-screen pt-8 pb-20 px-8">
       <div className="max-w-7xl mx-auto">
         <h2
           ref={titleRef}
